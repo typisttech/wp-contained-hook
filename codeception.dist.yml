@@ -1,0 +1,21 @@
+namespace: TypistTech\WPContainedHook
+actor: Tester
+paths:
+    tests: tests
+    log: tests/_output
+    data: tests/_data
+    support: tests/_support
+    envs: tests/_envs
+settings:
+    backup_globals: false
+    bootstrap: _bootstrap.php
+    shuffle: true
+    colors: true
+    memory_limit: 1024M
+coverage:
+  enabled: true
+  include:
+    - src/*
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed
