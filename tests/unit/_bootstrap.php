@@ -9,5 +9,6 @@ $kernel->init([
     'debug'        => true,
     'includePaths' => [
         codecept_root_dir('src/'),
+        codecept_root_dir('vendor/psr/container/src/'),
     ],
 ]);
