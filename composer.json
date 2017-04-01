@@ -49,6 +49,14 @@
             "TypistTech\\WPContainedHook\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "TypistTech\\WPContainedHook\\Test\\": "tests/_data"
+        },
+        "files": [
+            "tests/unit/AbstractHookTestTrait.php"
+        ]
+    },
     "scripts": {
         "check-style": "phpcs --standard=ruleset.xml --colors -p -s .",
         "fix-style": "phpcbf -p --standard=ruleset.xml --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 .",
@@ -60,7 +68,8 @@
             "doctoc README.md",
             "github_changelog_generator --no-verbose"
         ],
-        "test": "codecept run"
+        "test": "codecept run",
+        "test-with-coverage": "codecept run --coverage --coverage-html --coverage-xml"
     },
     "config": {
         "sort-packages": true
