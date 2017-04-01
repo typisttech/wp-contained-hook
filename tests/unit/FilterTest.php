@@ -36,18 +36,6 @@ class FilterTest extends \Codeception\Test\Unit
     private $spy;
 
     /**
-     * For AbstractHookTestTrait use.
-     *
-     * @param mixed ...$params Parameters of Action constructor.
-     *
-     * @return Filter
-     */
-    protected function getSubject(...$params): Filter
-    {
-        return new Filter(...$params);
-    }
-
-    /**
      * @covers \TypistTech\WPContainedHook\Filter::getCallbackClosure
      */
     public function testCallbackClosure()
@@ -55,7 +43,7 @@ class FilterTest extends \Codeception\Test\Unit
         $action = new Filter('spy-alias', 'hook', 'plus', 10, 2);
 
         $closure = $action->getCallbackClosure($this->container);
-        $actual = $closure(10, 20);
+        $actual  = $closure(10, 20);
 
         $this->containerMock->verifyInvokedMultipleTimes('get', 1);
         $this->containerMock->verifyInvokedOnce('get', [ 'spy-alias' ]);
@@ -72,5 +60,17 @@ class FilterTest extends \Codeception\Test\Unit
         ]);
 
         $this->container = $this->containerMock->getObject();
+    }
+
+    /**
+     * For AbstractHookTestTrait use.
+     *
+     * @param mixed ...$params Parameters of Action constructor.
+     *
+     * @return Filter
+     */
+    protected function getSubject(...$params): Filter
+    {
+        return new Filter(...$params);
     }
 }

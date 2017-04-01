@@ -6,17 +6,7 @@ namespace TypistTech\WPContainedHook;
 
 trait AbstractHookTestTrait
 {
-    /**
-     * @covers \TypistTech\WPContainedHook\AbstractHook
-     */
-    public function testGetAcceptedArgs()
-    {
-        $subject = $this->getSubject('classOne', 'hookOne', 'methodOne', 100, 11);
-
-        $actual = $subject->getAcceptedArgs();
-
-        $this->assertSame(11, $actual);
-    }
+    abstract protected function getSubject(...$params): AbstractHook;
 
     /**
      * @covers \TypistTech\WPContainedHook\AbstractHook
@@ -28,18 +18,6 @@ trait AbstractHookTestTrait
         $actual = $subject->getAcceptedArgs();
 
         $this->assertSame(1, $actual);
-    }
-
-    /**
-     * @covers \TypistTech\WPContainedHook\AbstractHook
-     */
-    public function testGetPriority()
-    {
-        $subject = $this->getSubject('classOne', 'hookOne', 'methodOne', 100, 11);
-
-        $actual = $subject->getPriority();
-
-        $this->assertSame(100, $actual);
     }
 
     /**
@@ -57,6 +35,18 @@ trait AbstractHookTestTrait
     /**
      * @covers \TypistTech\WPContainedHook\AbstractHook
      */
+    public function testGetAcceptedArgs()
+    {
+        $subject = $this->getSubject('classOne', 'hookOne', 'methodOne', 100, 11);
+
+        $actual = $subject->getAcceptedArgs();
+
+        $this->assertSame(11, $actual);
+    }
+
+    /**
+     * @covers \TypistTech\WPContainedHook\AbstractHook
+     */
     public function testGetHook()
     {
         $subject = $this->getSubject('classOne', 'hookOne', 'methodOne');
@@ -64,6 +54,18 @@ trait AbstractHookTestTrait
         $actual = $subject->getHook();
 
         $this->assertSame('hookOne', $actual);
+    }
+
+    /**
+     * @covers \TypistTech\WPContainedHook\AbstractHook
+     */
+    public function testGetPriority()
+    {
+        $subject = $this->getSubject('classOne', 'hookOne', 'methodOne', 100, 11);
+
+        $actual = $subject->getPriority();
+
+        $this->assertSame(100, $actual);
     }
 
     /**
@@ -75,6 +77,4 @@ trait AbstractHookTestTrait
 
         $this->assertInstanceOf(AbstractHook::class, $subject);
     }
-
-    abstract protected function getSubject(...$params): AbstractHook;
 }

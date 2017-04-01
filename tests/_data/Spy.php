@@ -11,15 +11,16 @@ class Spy
      */
     private $invokedParams = [];
 
-    public function plus(int $numberA, int $numberB): int
-    {
-        $this->invokedParams = [$numberA, $numberB];
-        return $numberA + $numberB;
-    }
-
     public function getInvokedParams(): array
     {
         return $this->invokedParams;
+    }
+
+    public function plus(int $numberA, int $numberB): int
+    {
+        $this->invokedParams = [ $numberA, $numberB ];
+
+        return $numberA + $numberB;
     }
 
 }

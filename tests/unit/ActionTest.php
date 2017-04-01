@@ -36,18 +36,6 @@ class ActionTest extends \Codeception\Test\Unit
     private $spy;
 
     /**
-     * For AbstractHookTestTrait use.
-     *
-     * @param mixed ...$params Parameters of Action constructor.
-     *
-     * @return Action
-     */
-    protected function getSubject(...$params): Action
-    {
-        return new Action(...$params);
-    }
-
-    /**
      * @covers \TypistTech\WPContainedHook\Action::getCallbackClosure
      */
     public function testCallbackClosure()
@@ -72,5 +60,17 @@ class ActionTest extends \Codeception\Test\Unit
         ]);
 
         $this->container = $this->containerMock->getObject();
+    }
+
+    /**
+     * For AbstractHookTestTrait use.
+     *
+     * @param mixed ...$params Parameters of Action constructor.
+     *
+     * @return Action
+     */
+    protected function getSubject(...$params): Action
+    {
+        return new Action(...$params);
     }
 }

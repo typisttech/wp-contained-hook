@@ -1,4 +1,5 @@
 <?php
+
 namespace TypistTech\WPContainedHook\Helper;
 
 use AspectMock\Test;
