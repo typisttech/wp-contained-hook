@@ -1,7 +1,7 @@
 {
     "name": "typisttech/wp-contained-hook",
     "type": "library",
-    "description": "",
+    "description": "Lazily instantiate objects from dependency injection container to WordPress hooks (actions and filters)",
     "keywords": [
         "action",
         "container",
@@ -43,6 +43,10 @@
         "league/container": "^2.4",
         "neronmoon/scriptsdev": "^0.1.1",
         "wp-coding-standards/wpcs": "^0.11.0"
+    },
+    "suggest": {
+        "league/container": "> 2.3.0 Provides psr/container-implementation",
+        "php-di/php-di": "> 5.4.2 Provides psr/container-implementation"
     },
     "autoload": {
         "psr-4": {
