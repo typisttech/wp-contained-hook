@@ -11,32 +11,18 @@
 [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.typist.tech/donate/wp-contained-hook/)
 [![Hire Typist Tech](https://img.shields.io/badge/Hire-Typist%20Tech-ff69b4.svg)](https://www.typist.tech/contact/)
 
-Short description.
-
+Lazily instantiate objects from dependency injection container to WordPress hooks (actions and filters).
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Why?](#why)
-- [The Goals, or What This Module Does?](#the-goals-or-what-this-module-does)
+- [The Goals, or What This Package Does?](#the-goals-or-what-this-package-does)
 - [Install](#install)
 - [Config](#config)
-  - [projectRoot](#projectroot)
-  - [composerInstallFlags](#composerinstallflags)
-  - [symlink](#symlink)
-  - [repositoryPaths](#repositorypaths)
 - [API](#api)
-  - [amInTmpProjectDir](#amintmpprojectdir)
-  - [runComposerCommand](#runcomposercommand)
-  - [runComposerInstall](#runcomposerinstall)
-  - [getTmpProjectDir()](#gettmpprojectdir)
 - [Frequently Asked Questions](#frequently-asked-questions)
-  - [I want to see what WP Contained Hook have done for me?](#i-want-to-see-what-wp-contained-hook-have-done-for-me)
-  - [What to do when `composer install` fail or not install the latest version?](#what-to-do-when-composer-install-fail-or-not-install-the-latest-version)
-  - [What to do when the tests are too slow?](#what-to-do-when-the-tests-are-too-slow)
-  - [Does it works on `codeception/base`?](#does-it-works-on-codeceptionbase)
-  - [Do you have an example project that use this module?](#do-you-have-an-example-project-that-use-this-module)
+  - [Do you have an example plugin that use this package?](#do-you-have-an-example-plugin-that-use-this-package)
 - [Support!](#support)
   - [Donate via PayPal *](#donate-via-paypal-)
   - [Why don't you hire me?](#why-dont-you-hire-me)
@@ -51,8 +37,6 @@ Short description.
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## Why? 
 
 ## The Goals, or What This Package Does?
 
