@@ -1,17 +1,15 @@
 <?xml version="1.0"?>
 <!--
-  ~ WP CloudFlare Guard
+  ~ WP Contained Hook
   ~
-  ~ Connecting WordPress with Cloudflare firewall,
-  ~ protect your WordPress site at DNS level.
-  ~ Automatically create firewall rules to block dangerous IPs.
+  ~ Lazily instantiate objects from dependency injection container
+  ~ to WordPress hooks (actions and filters).
   ~
-  ~ @package WPCFG
-  ~ @author Typist Tech <wp-cloudflare-guard@typist.tech>
+  ~ @package TypistTech\WPContainedHook
+  ~ @author Typist Tech <wp-contained-hook@typist.tech>
   ~ @copyright 2017 Typist Tech
-  ~ @license GPL-2.0+
-  ~ @see https://www.typist.tech/projects/wp-cloudflare-guard
-  ~ @see https://wordpress.org/plugins/wp-cloudflare-guard/
+  ~ @license MIT
+  ~ @see https://www.typist.tech/projects/wp-contained-hook
   -->
 
 <ruleset name="PSR 2 and WordPress Coding Standards for Plugins">

@@ -1,5 +1,9 @@
 <?php
+
 namespace TypistTech\WPContainedHook\Helper;
+
+use AspectMock\Test;
+use Codeception\TestInterface;
 
 /**
  * Here you can define custom actions
@@ -7,4 +11,8 @@ namespace TypistTech\WPContainedHook\Helper;
  */
 class Unit extends \Codeception\Module
 {
+    public function _after(TestInterface $test)
+    {
+        Test::clean();
+    }
 }

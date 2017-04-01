@@ -1,7 +1,7 @@
 {
     "name": "typisttech/wp-contained-hook",
     "type": "library",
-    "description": "",
+    "description": "Lazily instantiate objects from dependency injection container to WordPress hooks (actions and filters)",
     "keywords": [
         "action",
         "container",
@@ -33,18 +33,33 @@
         "source": "https://github.com/TypistTech/wp-contained-hook"
     },
     "require": {
-        "php": "^7.0"
+        "php": "^7.0",
+        "psr/container": "^1.0",
+        "psr/container-implementation": "^1.0"
     },
     "require-dev": {
         "codeception/aspect-mock": "^2.0",
         "codeception/base": "^2.2",
+        "league/container": "^2.4",
         "neronmoon/scriptsdev": "^0.1.1",
         "wp-coding-standards/wpcs": "^0.11.0"
+    },
+    "suggest": {
+        "league/container": "> 2.3.0 Provides psr/container-implementation",
+        "php-di/php-di": "> 5.4.2 Provides psr/container-implementation"
     },
     "autoload": {
         "psr-4": {
             "TypistTech\\WPContainedHook\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TypistTech\\WPContainedHook\\Test\\": "tests/_data"
+        },
+        "files": [
+            "tests/unit/AbstractHookTestTrait.php"
+        ]
     },
     "scripts": {
         "check-style": "phpcs --standard=ruleset.xml --colors -p -s .",
@@ -57,7 +72,8 @@
             "doctoc README.md",
             "github_changelog_generator --no-verbose"
         ],
-        "test": "codecept run"
+        "test": "codecept run",
+        "test-with-coverage": "codecept run --coverage --coverage-html --coverage-xml"
     },
     "config": {
         "sort-packages": true
