@@ -16,12 +16,12 @@ class ActionTest extends \Codeception\Test\Unit
     use AbstractHookTestTrait;
 
     /**
-     * @var \TypistTech\WPContainedHook\UnitTester
+     * @var Action
      */
-    protected $tester;
+    private $action;
 
     /**
-     * @var \Psr\Container\ContainerInterface
+     * @var Container
      */
     private $container;
 
@@ -36,19 +36,50 @@ class ActionTest extends \Codeception\Test\Unit
     private $spy;
 
     /**
-     * @covers \TypistTech\WPContainedHook\Action::getCallbackClosure
+     * @covers \TypistTech\WPContainedHook\Action::registerToWordPress
      */
-    public function testCallbackClosure()
+    public function testAddAction()
     {
-        $action = new Action('spy-alias', 'hook', 'plus', 10, 2);
+        $addActionMock = Test::func(__NAMESPACE__, 'add_action', true);
 
-        $closure = $action->getCallbackClosure($this->container);
-        $closure(10, 20);
+        $this->action->registerToWordPress();
+
+        $addActionMock->verifyInvokedMultipleTimes(1);
+        $addActionMock->verifyInvokedOnce([ 'hook', [ $this->action, 'run' ], 10, 2 ]);
+    }
+
+    /**
+     * @covers \TypistTech\WPContainedHook\Action::run
+     */
+    public function testRunCallInstanceMethodWithMultipleParams()
+    {
+        $this->action->run(10, 20);
+
+        $this->assertSame([ 10, 20 ], $this->spy->getInvokedParamsForPlus());
+    }
+
+    /**
+     * @covers \TypistTech\WPContainedHook\Action::run
+     */
+    public function testRunCallInstanceMethodWithoutParams()
+    {
+        $action = new Action('hook', 'spy-alias', 'ten');
+        $action->setContainer($this->container);
+
+        $action->run();
+
+        $this->assertTrue($this->spy->isTenCalled());
+    }
+
+    /**
+     * @covers \TypistTech\WPContainedHook\Action::run
+     */
+    public function testRunGetFromContainer()
+    {
+        $this->action->run(10, 20);
 
         $this->containerMock->verifyInvokedMultipleTimes('get', 1);
         $this->containerMock->verifyInvokedOnce('get', [ 'spy-alias' ]);
-
-        $this->assertSame([ 10, 20 ], $this->spy->getInvokedParams());
     }
 
     protected function _before()
@@ -58,8 +89,20 @@ class ActionTest extends \Codeception\Test\Unit
         $this->containerMock = Test::double(new Container, [
             'get' => $this->spy,
         ]);
+        $this->container     = $this->containerMock->getObject();
 
-        $this->container = $this->containerMock->getObject();
+        $this->action = new Action('hook', 'spy-alias', 'plus', 10, 2);
+        $this->action->setContainer($this->container);
+    }
+
+    /**
+     * For AbstractHookTestTrait use.
+     *
+     * @return string
+     */
+    protected function getIdPrefix(): string
+    {
+        return 'action';
     }
 
     /**

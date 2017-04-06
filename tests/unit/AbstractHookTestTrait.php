@@ -4,68 +4,69 @@ declare(strict_types=1);
 
 namespace TypistTech\WPContainedHook;
 
+use League\Container\Container;
+
 trait AbstractHookTestTrait
 {
+    /**
+     * @var AbstractHook
+     */
+    private $subject;
+
+    abstract protected function getIdPrefix(): string;
+
     abstract protected function getSubject(...$params): AbstractHook;
 
     /**
-     * @covers \TypistTech\WPContainedHook\AbstractHook
+     * @covers \TypistTech\WPContainedHook\AbstractHook::__construct
      */
-    public function testDefaultAcceptedArgs()
+    public function testConstructor()
     {
-        $subject = $this->getSubject('classOne', 'hookOne', 'methodOne');
+        $subject = $this->getSubject('hookOne', 'classOne', 'methodOne', 100, 11);
 
-        $actual = $subject->getAcceptedArgs();
-
-        $this->assertSame(1, $actual);
+        $this->assertAttributeSame('hookOne', 'hook', $subject);
+        $this->assertAttributeSame('classOne', 'classIdentifier', $subject);
+        $this->assertAttributeSame('methodOne', 'callbackMethod', $subject);
+        $this->assertAttributeSame(100, 'priority', $subject);
+        $this->assertAttributeSame(11, 'acceptedArgs', $subject);
     }
 
     /**
-     * @covers \TypistTech\WPContainedHook\AbstractHook
+     * @covers \TypistTech\WPContainedHook\AbstractHook::__construct
      */
-    public function testDefaultPriority()
+    public function testDefaultValues()
     {
-        $subject = $this->getSubject('classOne', 'hookOne', 'methodOne');
+        $subject = $this->getSubject('hookOne', 'classOne', 'methodOne');
 
-        $actual = $subject->getPriority();
-
-        $this->assertSame(10, $actual);
+        $this->assertAttributeSame(10, 'priority', $subject);
+        $this->assertAttributeSame(1, 'acceptedArgs', $subject);
     }
 
     /**
-     * @covers \TypistTech\WPContainedHook\AbstractHook
+     * @covers \TypistTech\WPContainedHook\AbstractHook::getContainer
      */
-    public function testGetAcceptedArgs()
+    public function testGetContainer()
     {
-        $subject = $this->getSubject('classOne', 'hookOne', 'methodOne', 100, 11);
+        $subject = $this->getSubject('hookOne', 'classOne', 'methodOne', 100, 11);
+        $subject->setContainer($this->container);
 
-        $actual = $subject->getAcceptedArgs();
+        $actual = $subject->getContainer();
 
-        $this->assertSame(11, $actual);
+        $this->assertSame($this->container, $actual);
     }
 
     /**
-     * @covers \TypistTech\WPContainedHook\AbstractHook
+     * @covers \TypistTech\WPContainedHook\AbstractHook::getId
      */
-    public function testGetHook()
+    public function testGetId()
     {
-        $subject = $this->getSubject('classOne', 'hookOne', 'methodOne');
+        $subject = $this->getSubject('hookOne', 'classOne', 'methodOne', 100, 11);
 
-        $actual = $subject->getHook();
+        $actual = $subject->getId();
 
-        $this->assertSame('hookOne', $actual);
-    }
+        $expected = $this->getIdPrefix() . '-hookOne-classOne-methodOne-100-11';
 
-    /**
-     * @covers \TypistTech\WPContainedHook\AbstractHook
-     */
-    public function testGetPriority()
-    {
-        $subject = $this->getSubject('classOne', 'hookOne', 'methodOne', 100, 11);
-
-        $actual = $subject->getPriority();
-
-        $this->assertSame(100, $actual);
+        $this->assertSame($expected, $actual);
     }
 
     /**
@@ -73,8 +74,40 @@ trait AbstractHookTestTrait
      */
     public function testIsInstanceOfAbstractHook()
     {
-        $subject = $this->getSubject('classOne', 'hookOne', 'methodOne');
+        $subject = $this->getSubject('hookOne', 'classOne', 'methodOne');
 
         $this->assertInstanceOf(AbstractHook::class, $subject);
+    }
+
+    /**
+     * @covers \TypistTech\WPContainedHook\AbstractHook::registerToContainer
+     */
+    public function testRegisterToContainer()
+    {
+        $container = new Container;
+        $subject   = $this->getSubject('hookOne', 'classOne', 'methodOne', 100, 11);
+        $subject->setContainer($container);
+
+        $subject->registerToContainer();
+        $actual = $container->get($subject->getId());
+
+        $this->assertSame($subject, $actual);
+    }
+
+    /**
+     * @covers \TypistTech\WPContainedHook\AbstractHook::setContainer
+     */
+    public function testSetContainer()
+    {
+        $container = new Container;
+        $subject   = $this->getSubject('hookOne', 'classOne', 'methodOne', 100, 11);
+
+        $subject->setContainer($container);
+
+        $this->assertAttributeSame(
+            $container,
+            'container',
+            $subject
+        );
     }
 }

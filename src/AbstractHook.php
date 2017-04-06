@@ -16,15 +16,17 @@ declare(strict_types=1);
 
 namespace TypistTech\WPContainedHook;
 
-use Closure;
-use Psr\Container\ContainerInterface;
+use League\Container\ContainerAwareTrait;
 
 /**
  * Abstract class AbstractHook.
- * Data transfer object that holds WordPress action information.
  */
 abstract class AbstractHook
 {
+    use ContainerAwareTrait;
+
+    const ID_PREFIX = 'hook';
+
     /**
      * The number of arguments that should be passed to the $callback.
      *
@@ -63,65 +65,71 @@ abstract class AbstractHook
     /**
      * Filter constructor.
      *
-     * @param string       $classIdentifier Identifier of the entry to look for from container.
      * @param string       $hook            The name of the WordPress hook that is being registered.
+     * @param string       $classIdentifier Identifier of the entry to look for from container.
      * @param string       $callbackMethod  The callback method name.
      * @param integer|null $priority        Optional.The priority at which the function should be fired. Default is 10.
      * @param integer|null $acceptedArgs    Optional. The number of arguments that should be passed to the $callback.
      *                                      Default is 1.
      */
     public function __construct(
-        string $classIdentifier,
         string $hook,
+        string $classIdentifier,
         string $callbackMethod,
         int $priority = null,
         int $acceptedArgs = null
     ) {
-        $this->classIdentifier = $classIdentifier;
         $this->hook            = $hook;
+        $this->classIdentifier = $classIdentifier;
         $this->callbackMethod  = $callbackMethod;
         $this->priority        = $priority ?? 10;
         $this->acceptedArgs    = $acceptedArgs ?? 1;
     }
 
     /**
-     * Callback closure getter.
+     * Add this hook to WordPress via add_action or add_filter.
      *
-     * The actual callback that WordPress going to fire.
-     *
-     * @param ContainerInterface $container The container.
-     *
-     * @return Closure
+     * @return void
      */
-    abstract public function getCallbackClosure(ContainerInterface $container): Closure;
+    abstract public function registerToWordPress();
 
     /**
-     * AcceptedArgs getter.
+     * The actual callback that WordPress going to fire.
      *
-     * @return int
+     * @param array ...$args Arguments which pass on to the actual instance.
+     *
+     * @return mixed
      */
-    public function getAcceptedArgs(): int
+    abstract public function run(...$args);
+
+    /**
+     * Add this instance to container.
+     *
+     * @return void
+     */
+    public function registerToContainer()
     {
-        return $this->acceptedArgs;
+        $this->container->share(
+            $this->getId(),
+            $this
+        );
     }
 
     /**
-     * Hook getter.
+     * ID getter.
      *
      * @return string
      */
-    public function getHook(): string
+    public function getId(): string
     {
-        return $this->hook;
-    }
-
-    /**
-     * Priority getter.
-     *
-     * @return int
-     */
-    public function getPriority(): int
-    {
-        return $this->priority;
+        return sprintf(
+            '%1$s-%2$s-%3$s-%4$s-%5$d-%6$d',
+            static::ID_PREFIX,
+            $this->hook,
+            $this->classIdentifier,
+            $this->callbackMethod,
+            $this->priority,
+            $this->acceptedArgs
+        );
     }
 }

@@ -16,30 +16,34 @@ declare(strict_types=1);
 
 namespace TypistTech\WPContainedHook;
 
-use Closure;
-use Psr\Container\ContainerInterface;
-
 /**
  * Final class Action
- *
- * Data transfer object that holds WordPress action information.
  */
 final class Action extends AbstractHook
 {
+    const ID_PREFIX = 'action';
+
     /**
-     * Callback closure getter.
-     *
+     * {@inheritdoc}
+     */
+    public function registerToWordPress()
+    {
+        add_action(
+            $this->hook,
+            [ $this, 'run' ],
+            $this->priority,
+            $this->acceptedArgs
+        );
+    }
+
+    /**
      * The actual callback that WordPress going to fire.
      *
-     * @param ContainerInterface $container The container.
-     *
-     * @return Closure
+     * @param array ...$args Arguments which pass on to the actual instance.
      */
-    public function getCallbackClosure(ContainerInterface $container): Closure
+    public function run(...$args)
     {
-        return function (...$args) use ($container) {
-            $instance = $container->get($this->classIdentifier);
-            $instance->{$this->callbackMethod}(...$args);
-        };
+        $instance = $this->container->get($this->classIdentifier);
+        $instance->{$this->callbackMethod}(...$args);
     }
 }

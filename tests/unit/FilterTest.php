@@ -16,12 +16,7 @@ class FilterTest extends \Codeception\Test\Unit
     use AbstractHookTestTrait;
 
     /**
-     * @var \TypistTech\WPContainedHook\UnitTester
-     */
-    protected $tester;
-
-    /**
-     * @var \Psr\Container\ContainerInterface
+     * @var Container
      */
     private $container;
 
@@ -31,23 +26,70 @@ class FilterTest extends \Codeception\Test\Unit
     private $containerMock;
 
     /**
+     * @var Filter
+     */
+    private $filter;
+
+    /**
      * @var Spy
      */
     private $spy;
 
     /**
-     * @covers \TypistTech\WPContainedHook\Filter::getCallbackClosure
+     * @covers \TypistTech\WPContainedHook\Filter::registerToWordPress
      */
-    public function testCallbackClosure()
+    public function testAddFilter()
     {
-        $action = new Filter('spy-alias', 'hook', 'plus', 10, 2);
+        $addFilterMock = Test::func(__NAMESPACE__, 'add_filter', true);
 
-        $closure = $action->getCallbackClosure($this->container);
-        $actual  = $closure(10, 20);
+        $this->filter->registerToWordPress();
+
+        $addFilterMock->verifyInvokedMultipleTimes(1);
+        $addFilterMock->verifyInvokedOnce([ 'hook', [ $this->filter, 'run' ], 10, 2 ]);
+    }
+
+    /**
+     * @covers \TypistTech\WPContainedHook\Filter::run
+     */
+    public function testRunCallInstanceMethodWithMultipleParams()
+    {
+        $this->filter->run(10, 20);
+
+        $this->assertSame([ 10, 20 ], $this->spy->getInvokedParamsForPlus());
+    }
+
+    /**
+     * @covers \TypistTech\WPContainedHook\Filter::run
+     */
+    public function testRunCallInstanceMethodWithoutParams()
+    {
+        $filter = new Filter('hook', 'spy-alias', 'ten');
+        $filter->setContainer($this->container);
+
+        $actual = $filter->run();
+
+        $this->assertTrue($this->spy->isTenCalled());
+        $this->assertSame(10, $actual);
+    }
+
+    /**
+     * @covers \TypistTech\WPContainedHook\Filter::run
+     */
+    public function testRunGetFromContainer()
+    {
+        $this->filter->run(10, 20);
 
         $this->containerMock->verifyInvokedMultipleTimes('get', 1);
         $this->containerMock->verifyInvokedOnce('get', [ 'spy-alias' ]);
-        $this->assertSame([ 10, 20 ], $this->spy->getInvokedParams());
+    }
+
+    /**
+     * @covers \TypistTech\WPContainedHook\Filter::run
+     */
+    public function testRunReturnResult()
+    {
+        $actual = $this->filter->run(10, 20);
+
         $this->assertSame(30, $actual);
     }
 
@@ -60,12 +102,25 @@ class FilterTest extends \Codeception\Test\Unit
         ]);
 
         $this->container = $this->containerMock->getObject();
+
+        $this->filter = new Filter('hook', 'spy-alias', 'plus', 10, 2);
+        $this->filter->setContainer($this->container);
     }
 
     /**
      * For AbstractHookTestTrait use.
      *
-     * @param mixed ...$params Parameters of Action constructor.
+     * @return string
+     */
+    protected function getIdPrefix(): string
+    {
+        return 'filter';
+    }
+
+    /**
+     * For AbstractHookTestTrait use.
+     *
+     * @param mixed ...$params Parameters of Filter constructor.
      *
      * @return Filter
      */
