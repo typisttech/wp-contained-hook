@@ -11,31 +11,21 @@ trait AbstractHookTestTrait
     abstract protected function getSubject(...$params): AbstractHook;
 
     /**
-     * @covers \TypistTech\WPContainedHook\AbstractHook
+     * @covers \TypistTech\WPContainedHook\AbstractHook::__construct
      */
-    public function testDefaultAcceptedArgs()
+    public function testDefaultValues()
     {
         $subject = $this->getSubject('classOne', 'hookOne', 'methodOne');
 
-        $actual = $subject->getAcceptedArgs();
+        $actualPriority = $subject->getPriority();
+        $actualAcceptedArgs = $subject->getAcceptedArgs();
 
-        $this->assertSame(1, $actual);
+        $this->assertSame(10, $actualPriority);
+        $this->assertSame(1, $actualAcceptedArgs);
     }
 
     /**
-     * @covers \TypistTech\WPContainedHook\AbstractHook
-     */
-    public function testDefaultPriority()
-    {
-        $subject = $this->getSubject('classOne', 'hookOne', 'methodOne');
-
-        $actual = $subject->getPriority();
-
-        $this->assertSame(10, $actual);
-    }
-
-    /**
-     * @covers \TypistTech\WPContainedHook\AbstractHook
+     * @covers \TypistTech\WPContainedHook\AbstractHook::getAcceptedArgs
      */
     public function testGetAcceptedArgs()
     {
@@ -47,7 +37,7 @@ trait AbstractHookTestTrait
     }
 
     /**
-     * @covers \TypistTech\WPContainedHook\AbstractHook
+     * @covers \TypistTech\WPContainedHook\AbstractHook::getHook
      */
     public function testGetHook()
     {
@@ -59,7 +49,7 @@ trait AbstractHookTestTrait
     }
 
     /**
-     * @covers \TypistTech\WPContainedHook\AbstractHook
+     * @covers \TypistTech\WPContainedHook\AbstractHook::getId
      */
     public function testGetId()
     {
@@ -73,7 +63,7 @@ trait AbstractHookTestTrait
     }
 
     /**
-     * @covers \TypistTech\WPContainedHook\AbstractHook
+     * @covers \TypistTech\WPContainedHook\AbstractHook::getPriority
      */
     public function testGetPriority()
     {
