@@ -12,7 +12,7 @@ branches:
 ## Cache composer
 cache:
   directories:
-    - $HOME/.composer/cache
+    - $HOME/.composer/cache/files
 
 notifications:
   email:
