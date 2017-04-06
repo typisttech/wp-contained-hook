@@ -3,6 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/typisttech/wp-contained-hook/v/stable)](https://packagist.org/packages/typisttech/wp-contained-hook)
 [![Total Downloads](https://poser.pugx.org/typisttech/wp-contained-hook/downloads)](https://packagist.org/packages/typisttech/wp-contained-hook)
 [![Build Status](https://travis-ci.org/TypistTech/wp-contained-hook.svg?branch=master)](https://travis-ci.org/TypistTech/wp-contained-hook)
+[![codecov](https://codecov.io/gh/TypistTech/wp-contained-hook/branch/master/graph/badge.svg)](https://codecov.io/gh/TypistTech/wp-contained-hook)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/TypistTech/wp-contained-hook/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/TypistTech/wp-contained-hook/?branch=master)
 [![PHP Versions Tested](http://php-eye.com/badge/typisttech/wp-contained-hook/tested.svg)](https://travis-ci.org/TypistTech/wp-contained-hook)
 [![StyleCI](https://styleci.io/repos/86774587/shield?branch=master)](https://styleci.io/repos/86774587)
