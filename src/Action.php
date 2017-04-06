@@ -26,6 +26,8 @@ use Psr\Container\ContainerInterface;
  */
 final class Action extends AbstractHook
 {
+    const ID_PREFIX = 'action';
+
     /**
      * Callback closure getter.
      *

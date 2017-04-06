@@ -26,6 +26,8 @@ use Psr\Container\ContainerInterface;
  */
 final class Filter extends AbstractHook
 {
+    const ID_PREFIX = 'filter';
+
     /**
      * Callback closure getter.
      *

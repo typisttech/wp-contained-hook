@@ -6,6 +6,8 @@ namespace TypistTech\WPContainedHook;
 
 trait AbstractHookTestTrait
 {
+    abstract protected function getIdPrefix(): string;
+
     abstract protected function getSubject(...$params): AbstractHook;
 
     /**
@@ -54,6 +56,20 @@ trait AbstractHookTestTrait
         $actual = $subject->getHook();
 
         $this->assertSame('hookOne', $actual);
+    }
+
+    /**
+     * @covers \TypistTech\WPContainedHook\AbstractHook
+     */
+    public function testGetId()
+    {
+        $subject = $this->getSubject('classOne', 'hookOne', 'methodOne', 100, 11);
+
+        $actual = $subject->getId();
+
+        $expected = $this->getIdPrefix() . '-classOne-hookOne-methodOne-100-11';
+
+        $this->assertSame($expected, $actual);
     }
 
     /**

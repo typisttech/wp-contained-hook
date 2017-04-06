@@ -25,6 +25,8 @@ use Psr\Container\ContainerInterface;
  */
 abstract class AbstractHook
 {
+    const ID_PREFIX = 'hook';
+
     /**
      * The number of arguments that should be passed to the $callback.
      *
@@ -113,6 +115,24 @@ abstract class AbstractHook
     public function getHook(): string
     {
         return $this->hook;
+    }
+
+    /**
+     * ID getter.
+     *
+     * @return string
+     */
+    public function getId(): string
+    {
+        return sprintf(
+            '%1$s-%2$s-%3$s-%4$s-%5$d-%6$d',
+            static::ID_PREFIX,
+            $this->classIdentifier,
+            $this->hook,
+            $this->callbackMethod,
+            $this->priority,
+            $this->acceptedArgs
+        );
     }
 
     /**

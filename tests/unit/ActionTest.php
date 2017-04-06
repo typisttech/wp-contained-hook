@@ -65,6 +65,16 @@ class ActionTest extends \Codeception\Test\Unit
     /**
      * For AbstractHookTestTrait use.
      *
+     * @return string
+     */
+    protected function getIdPrefix(): string
+    {
+        return 'action';
+    }
+
+    /**
+     * For AbstractHookTestTrait use.
+     *
      * @param mixed ...$params Parameters of Action constructor.
      *
      * @return Action

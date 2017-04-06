@@ -65,6 +65,16 @@ class FilterTest extends \Codeception\Test\Unit
     /**
      * For AbstractHookTestTrait use.
      *
+     * @return string
+     */
+    protected function getIdPrefix(): string
+    {
+        return 'filter';
+    }
+
+    /**
+     * For AbstractHookTestTrait use.
+     *
      * @param mixed ...$params Parameters of Action constructor.
      *
      * @return Filter
