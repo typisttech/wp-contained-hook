@@ -9,18 +9,34 @@ class Spy
     /**
      * @var int[]
      */
-    private $invokedParams = [];
+    private $invokedParamsForPlus = [];
 
-    public function getInvokedParams(): array
+    /**
+     * @var bool
+     */
+    private $tenCalled = false;
+
+    public function getInvokedParamsForPlus(): array
     {
-        return $this->invokedParams;
+        return $this->invokedParamsForPlus;
+    }
+
+    public function isTenCalled(): bool
+    {
+        return $this->tenCalled;
     }
 
     public function plus(int $numberA, int $numberB): int
     {
-        $this->invokedParams = [ $numberA, $numberB ];
+        $this->invokedParamsForPlus = [ $numberA, $numberB ];
 
         return $numberA + $numberB;
     }
 
+    public function ten(): int
+    {
+        $this->tenCalled = true;
+
+        return 10;
+    }
 }

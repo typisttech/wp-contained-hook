@@ -16,33 +16,37 @@ declare(strict_types=1);
 
 namespace TypistTech\WPContainedHook;
 
-use Closure;
-use Psr\Container\ContainerInterface;
-
 /**
  * Final class Filter
- *
- * Data transfer object that holds WordPress filter information.
  */
 final class Filter extends AbstractHook
 {
     const ID_PREFIX = 'filter';
 
     /**
-     * Callback closure getter.
-     *
+     * {@inheritdoc}
+     */
+    public function registerToWordPress()
+    {
+        add_filter(
+            $this->hook,
+            [ $this, 'run' ],
+            $this->priority,
+            $this->acceptedArgs
+        );
+    }
+
+    /**
      * The actual callback that WordPress going to fire.
      *
-     * @param ContainerInterface $container The container.
+     * @param array ...$args Arguments which pass on to the actual instance.
      *
-     * @return Closure
+     * @return mixed
      */
-    public function getCallbackClosure(ContainerInterface $container): Closure
+    public function run(...$args)
     {
-        return function (...$args) use ($container) {
-            $instance = $container->get($this->classIdentifier);
+        $instance = $this->container->get($this->classIdentifier);
 
-            return $instance->{$this->callbackMethod}(...$args);
-        };
+        return $instance->{$this->callbackMethod}(...$args);
     }
 }

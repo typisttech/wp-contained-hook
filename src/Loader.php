@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 namespace TypistTech\WPContainedHook;
 
-use Psr\Container\ContainerInterface as Container;
+use League\Container\ContainerInterface as Container;
 
 /**
  * Register all actions and filters for the plugin.
@@ -28,13 +28,6 @@ use Psr\Container\ContainerInterface as Container;
 final class Loader
 {
     /**
-     * Array of actions registered with WordPress.
-     *
-     * @var Action[]
-     */
-    private $actions;
-
-    /**
      * The container.
      *
      * @var Container
@@ -42,77 +35,49 @@ final class Loader
     private $container;
 
     /**
-     * Array of filters registered with WordPress.
+     * Array of hooks registered with WordPress.
      *
-     * @var Filter[]
+     * @var AbstractHook[]
      */
-    private $filters;
+    private $hooks;
 
     /**
-     * Initialize the collections used to maintain the actions and filters.
+     * Initialize the collections used to maintain the hooks.
      *
      * @param Container $container The container.
      */
     public function __construct(Container $container)
     {
         $this->container = $container;
-        $this->actions   = [];
-        $this->filters   = [];
+        $this->hooks     = [];
     }
 
     /**
-     * Add new actions to the collection to be registered with WordPress.
+     * Add new hooks to the collection to be registered with WordPress.
      *
-     * @param Action|Action[] ...$actions Actions to be registered.
+     * @param AbstractHook|AbstractHook[] ...$hooks Hooks to be registered.
      *
      * @return void
      */
-    public function addAction(Action ...$actions)
+    public function add(AbstractHook ...$hooks)
     {
-        $this->actions = array_unique(
-            array_merge($this->actions, $actions),
+        $this->hooks = array_unique(
+            array_merge($this->hooks, $hooks),
             SORT_REGULAR
         );
     }
 
     /**
-     * Add new filters to the collection to be registered with WordPress.
-     *
-     * @param Filter|Filter[] ...$filters Filters to be registered.
-     *
-     * @return void
-     */
-    public function addFilter(Filter ...$filters)
-    {
-        $this->filters = array_unique(
-            array_merge($this->filters, $filters),
-            SORT_REGULAR
-        );
-    }
-
-    /**
-     * Register the filters and actions with WordPress.
+     * Register the hooks to the container and WordPress.
      *
      * @return void
      */
     public function run()
     {
-        foreach ($this->actions as $action) {
-            add_action(
-                $action->getHook(),
-                $action->getCallbackClosure($this->container),
-                $action->getPriority(),
-                $action->getAcceptedArgs()
-            );
-        }
-
-        foreach ($this->filters as $filter) {
-            add_filter(
-                $filter->getHook(),
-                $filter->getCallbackClosure($this->container),
-                $filter->getPriority(),
-                $filter->getAcceptedArgs()
-            );
+        foreach ($this->hooks as $hook) {
+            $hook->setContainer($this->container);
+            $hook->registerToContainer();
+            $hook->registerToWordPress();
         }
     }
 }
