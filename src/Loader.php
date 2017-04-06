@@ -63,7 +63,7 @@ final class Loader
     /**
      * Add new actions to the collection to be registered with WordPress.
      *
-     * @param Action[]|array ...$actions Actions to be registered.
+     * @param Action|Action[] ...$actions Actions to be registered.
      *
      * @return void
      */
@@ -78,7 +78,7 @@ final class Loader
     /**
      * Add new filters to the collection to be registered with WordPress.
      *
-     * @param Filter[]|array ...$filters Filters to be registered.
+     * @param Filter|Filter[] ...$filters Filters to be registered.
      *
      * @return void
      */
