@@ -1,12 +1,27 @@
 # Change Log
 
-## [0.1.0](https://github.com/TypistTech/wp-contained-hook/tree/0.1.0) (2017-04-07)
+## [0.1.1](https://github.com/TypistTech/wp-contained-hook/tree/0.1.1) (2017-04-19)
+[Full Changelog](https://github.com/TypistTech/wp-contained-hook/compare/0.1.0...0.1.1)
+
+**Closed issues:**
+
+- Disable codecov.io pull request commenting [\#6](https://github.com/TypistTech/wp-contained-hook/issues/6)
+
+**Merged pull requests:**
+
+- Prepare for league/container 3.0 [\#10](https://github.com/TypistTech/wp-contained-hook/pull/10) ([TangRufus](https://github.com/TangRufus))
+- Disable codecov.io pull request commenting [\#8](https://github.com/TypistTech/wp-contained-hook/pull/8) ([TangRufus](https://github.com/TangRufus))
+- Fix wrong link [\#7](https://github.com/TypistTech/wp-contained-hook/pull/7) ([TangRufus](https://github.com/TangRufus))
+- TravisCI: Cache only composer files [\#5](https://github.com/TypistTech/wp-contained-hook/pull/5) ([TangRufus](https://github.com/TangRufus))
+
+## [0.1.0](https://github.com/TypistTech/wp-contained-hook/tree/0.1.0) (2017-04-06)
 **Closed issues:**
 
 - Allow remove action/filter [\#2](https://github.com/TypistTech/wp-contained-hook/issues/2)
 
 **Merged pull requests:**
 
+- Version bump 0.1.0 [\#4](https://github.com/TypistTech/wp-contained-hook/pull/4) ([TangRufus](https://github.com/TangRufus))
 - Allow remove action/filter [\#3](https://github.com/TypistTech/wp-contained-hook/pull/3) ([TangRufus](https://github.com/TangRufus))
 - Clone from WP Cloudflare Guard [\#1](https://github.com/TypistTech/wp-contained-hook/pull/1) ([TangRufus](https://github.com/TangRufus))
 
