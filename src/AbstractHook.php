@@ -16,12 +16,13 @@ declare(strict_types=1);
 
 namespace TypistTech\WPContainedHook;
 
+use League\Container\ContainerAwareInterface;
 use League\Container\ContainerAwareTrait;
 
 /**
  * Abstract class AbstractHook.
  */
-abstract class AbstractHook
+abstract class AbstractHook implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
@@ -109,9 +110,10 @@ abstract class AbstractHook
      */
     public function registerToContainer()
     {
-        $this->container->share(
+        $this->container->add(
             $this->getId(),
-            $this
+            $this,
+            true
         );
     }
 
