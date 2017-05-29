@@ -89,7 +89,7 @@ class ActionTest extends \Codeception\Test\Unit
         $this->containerMock = Test::double(new Container, [
             'get' => $this->spy,
         ]);
-        $this->container     = $this->containerMock->getObject();
+        $this->container = $this->containerMock->getObject();
 
         $this->action = new Action('hook', 'spy-alias', 'plus', 10, 2);
         $this->action->setContainer($this->container);

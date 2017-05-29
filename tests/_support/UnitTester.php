@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypistTech\WPContainedHook;
 
 /**
@@ -22,7 +24,7 @@ class UnitTester extends \Codeception\Actor
 {
     use _generated\UnitTesterActions;
 
-    /**
+    /*
      * Define custom actions here
      */
 }
