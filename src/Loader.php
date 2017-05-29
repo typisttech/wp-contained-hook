@@ -6,9 +6,11 @@
  * to WordPress hooks (actions and filters).
  *
  * @package   TypistTech\WPContainedHook
+ *
  * @author    Typist Tech <wp-contained-hook@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   MIT
+ *
  * @see       https://www.typist.tech/projects/wp-contained-hook
  */
 
@@ -49,7 +51,7 @@ final class Loader
     public function __construct(Container $container)
     {
         $this->container = $container;
-        $this->hooks     = [];
+        $this->hooks = [];
     }
 
     /**
