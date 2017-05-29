@@ -20,8 +20,16 @@ Lazily instantiate objects from dependency injection container to WordPress hook
 
 - [The Goals, or What This Package Does?](#the-goals-or-what-this-package-does)
 - [Install](#install)
-- [Config](#config)
+- [Usage](#usage)
 - [API](#api)
+  - [Loader](#loader)
+    - [Loader::__construct(Container $container)](#loader__constructcontainer-container)
+    - [Loader::add(AbstractHook ...$hooks)](#loaderaddabstracthook-hooks)
+    - [Loader::run()](#loaderrun)
+  - [Action](#action)
+    - [Action::__construct(string $hook, string $classIdentifier, string $callbackMethod, int $priority = null, int $acceptedArgs = null)](#action__constructstring-hook-string-classidentifier-string-callbackmethod-int-priority--null-int-acceptedargs--null)
+  - [Filter](#filter)
+    - [Filter::__construct(string $hook, string $classIdentifier, string $callbackMethod, int $priority = null, int $acceptedArgs = null)](#filter__constructstring-hook-string-classidentifier-string-callbackmethod-int-priority--null-int-acceptedargs--null)
 - [Frequently Asked Questions](#frequently-asked-questions)
   - [Do you have an example plugin that use this package?](#do-you-have-an-example-plugin-that-use-this-package)
 - [Support!](#support)
@@ -41,6 +49,10 @@ Lazily instantiate objects from dependency injection container to WordPress hook
 
 ## The Goals, or What This Package Does?
 
+Lazily instantiate objects from dependency injection container to WordPress hooks (actions and filters).
+
+Using dependency container in WordPress plugins or themes. Dependencies are lazy loaded, not instantiated until the first time they are used. 
+
 ## Install
 
 Installation should be done via composer, details of how to install composer can be found at [https://getcomposer.org/](https://getcomposer.org/).
@@ -49,9 +61,119 @@ Installation should be done via composer, details of how to install composer can
 $ composer require typisttech/wp-contained-hook --dev
 ```
 
-## Config
+## Usage
+
+```php
+use League\Container\Container;
+use League\Container\ReflectionContainer;
+use TypistTech\WPContainedHook\Action;
+use TypistTech\WPContainedHook\Filter;
+use TypistTech\WPContainedHook\Loader;
+
+$container = new Container;
+
+// Optional container config. 
+$container->delegate(new ReflectionContainer); 
+$someClass = new SomeClass;
+$this->container->add(SomeClass::class, $someClass);
+
+$loader = new Loader($container);
+
+// Action.
+$action = new Action(SomeClass::class, 'plugin_loaded', 'doSomething');
+
+// Filter.
+$filter = new Filter(SomeClass::class, 'the_content', 'filterSomething');
+
+// Add to loader
+$loader->add($action, $filter);
+
+// Add to WordPress
+$loader->run();
+```
 
 ## API
+
+### Loader
+
+Register all actions and filters for the plugin.
+
+Maintain a list of all hooks that are registered throughout the plugin, and register them with the WordPress API. Call the `run` function to execute the list of actions and filters.
+
+#### Loader::__construct(Container $container)
+
+Loader constructor.
+
+* @param League\Container\Container\Container $container The container.
+
+Example:
+
+```php
+$container = new Container;
+$loader = new Loader($container);
+```
+
+#### Loader::add(AbstractHook ...$hooks)
+
+Add new hooks to the collection to be registered with WordPress.
+
+* @param AbstractHook|AbstractHook[] ...$hooks Hooks to be registered.
+
+Example:
+
+```php
+// Action.
+$action = new Action(SomeClass::class, 'plugin_loaded', 'doSomething');
+
+// Filter.
+$filter = new Filter(SomeClass::class, 'the_content', 'filterSomething');
+
+// Add to loader
+$loader->add($action, $filter);
+```
+
+#### Loader::run()
+
+Register the hooks to the container and WordPress.
+
+Example:
+
+```php
+$loader->run();
+```
+
+### Action
+
+Holds necessary information for an action.
+
+Subclass of `AbstractHook`.
+
+#### Action::__construct(string $hook, string $classIdentifier, string $callbackMethod, int $priority = null, int $acceptedArgs = null)
+
+Action constructor.
+
+* @param string   $hook            The name of the WordPress hook that is being registered.
+* @param string   $classIdentifier Identifier of the entry to look for from container.
+* @param string   $callbackMethod  The callback method name.
+* @param int|null $priority        Optional.The priority at which the function should be fired. Default is 10.
+* @param int|null $acceptedArgs    Optional. The number of arguments that should be passed to the $callback. Default is 1.
+
+### Filter
+
+Holds necessary information for a filter.
+
+Subclass of `AbstractHook`.
+
+#### Filter::__construct(string $hook, string $classIdentifier, string $callbackMethod, int $priority = null, int $acceptedArgs = null)
+
+Filter constructor.
+
+* @param string   $hook            The name of the WordPress hook that is being registered.
+* @param string   $classIdentifier Identifier of the entry to look for from container.
+* @param string   $callbackMethod  The callback method name.
+* @param int|null $priority        Optional.The priority at which the function should be fired. Default is 10.
+* @param int|null $acceptedArgs    Optional. The number of arguments that should be passed to the $callback. Default is 1.
+
 
 ## Frequently Asked Questions
 
@@ -59,6 +181,7 @@ $ composer require typisttech/wp-contained-hook --dev
 
 Here you go: 
 
+ * [Sunny](https://github.com/TypistTech/sunny)
  * [WP Cloudflare Guard](https://github.com/TypistTech/wp-cloudflare-guard)
 
 *Add your own plugin [here](https://github.com/TypistTech/wp-contained-hook/edit/master/README.md)*
