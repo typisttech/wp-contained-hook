@@ -1,4 +1,6 @@
 filter:
+    dependency_paths:
+        - "lib/"
     excluded_paths:
         - "tests/"
 
