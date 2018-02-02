@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace TypistTech\WPContainedHook;
 
 use AspectMock\Test;
+use Codeception\Test\Unit;
 use League\Container\Container;
 
 /**
  * @coversDefaultClass \TypistTech\WPContainedHook\Loader
  */
-class LoaderTest extends \Codeception\Test\Unit
+class LoaderTest extends Unit
 {
     /**
      * @var Action
