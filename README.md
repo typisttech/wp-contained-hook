@@ -7,7 +7,6 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/TypistTech/wp-contained-hook/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/TypistTech/wp-contained-hook/?branch=master)
 [![PHP Versions Tested](http://php-eye.com/badge/typisttech/wp-contained-hook/tested.svg)](https://travis-ci.org/TypistTech/wp-contained-hook)
 [![StyleCI](https://styleci.io/repos/86774587/shield?branch=master)](https://styleci.io/repos/86774587)
-[![Dependency Status](https://gemnasium.com/badges/github.com/TypistTech/wp-contained-hook.svg)](https://gemnasium.com/github.com/TypistTech/wp-contained-hook)
 [![License](https://poser.pugx.org/typisttech/wp-contained-hook/license)](https://packagist.org/packages/typisttech/wp-contained-hook)
 [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.typist.tech/donate/wp-contained-hook/)
 [![Hire Typist Tech](https://img.shields.io/badge/Hire-Typist%20Tech-ff69b4.svg)](https://www.typist.tech/contact/)
