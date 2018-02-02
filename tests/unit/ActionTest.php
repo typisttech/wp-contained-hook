@@ -84,9 +84,9 @@ class ActionTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $this->spy = new Spy;
+        $this->spy = new Spy();
 
-        $this->containerMock = Test::double(new Container, [
+        $this->containerMock = Test::double(new Container(), [
             'get' => $this->spy,
         ]);
         $this->container = $this->containerMock->getObject();

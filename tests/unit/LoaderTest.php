@@ -141,7 +141,7 @@ class LoaderTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $this->container = new Container;
+        $this->container = new Container();
         $this->loader = new Loader($this->container);
 
         $this->actionOne = new Action('hookOne', 'classOne', 'method', 10, 1);
