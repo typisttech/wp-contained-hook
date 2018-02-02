@@ -23,12 +23,12 @@ namespace TypistTech\WPContainedHook;
  */
 final class Action extends AbstractHook
 {
-    const ID_PREFIX = 'action';
+    protected const ID_PREFIX = 'action';
 
     /**
      * {@inheritdoc}
      */
-    public function registerToWordPress()
+    public function registerToWordPress(): void
     {
         add_action(
             $this->hook,
@@ -42,8 +42,10 @@ final class Action extends AbstractHook
      * The actual callback that WordPress going to fire.
      *
      * @param array ...$args Arguments which pass on to the actual instance.
+     *
+     * @return void
      */
-    public function run(...$args)
+    public function run(...$args): void
     {
         $instance = $this->container->get($this->classIdentifier);
         $instance->{$this->callbackMethod}(...$args);

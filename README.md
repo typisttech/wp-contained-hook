@@ -54,7 +54,7 @@ Using dependency container in WordPress plugins or themes. Dependencies are lazy
 Installation should be done via composer, details of how to install composer can be found at [https://getcomposer.org/](https://getcomposer.org/).
 
 ``` bash
-$ composer require typisttech/wp-contained-hook --dev
+$ composer require typisttech/wp-contained-hook
 ```
 
 ## Usage
