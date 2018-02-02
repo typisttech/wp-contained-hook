@@ -55,6 +55,9 @@
             "tests/unit/AbstractHookTestTrait.php"
         ]
     },
+    "suggest": {
+        "typisttech/imposter-plugin": "Wrap all composer vendor packages inside your own namespace, to prevent collisions when multiple plugins use this library"
+    },
     "scripts": {
         "check-style": "phpcs --standard=ruleset.xml --colors -p -s .",
         "install-dev-extra": "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
