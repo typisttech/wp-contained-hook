@@ -57,7 +57,6 @@
     },
     "scripts": {
         "check-style": "phpcs --standard=ruleset.xml --colors -p -s .",
-        "fix-style": "phpcbf -p --standard=ruleset.xml --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 .",
         "install-dev-extra": "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
         "pre-tag": [
             "composer update",
