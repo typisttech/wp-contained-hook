@@ -25,10 +25,7 @@ Lazily instantiate objects from dependency injection container to WordPress hook
     - [Loader::__construct(Container $container)](#loader__constructcontainer-container)
     - [Loader::add(AbstractHook ...$hooks)](#loaderaddabstracthook-hooks)
     - [Loader::run()](#loaderrun)
-  - [Action](#action)
-    - [Action::__construct(string $hook, string $classIdentifier, string $callbackMethod, int $priority = null, int $acceptedArgs = null)](#action__constructstring-hook-string-classidentifier-string-callbackmethod-int-priority--null-int-acceptedargs--null)
-  - [Filter](#filter)
-    - [Filter::__construct(string $hook, string $classIdentifier, string $callbackMethod, int $priority = null, int $acceptedArgs = null)](#filter__constructstring-hook-string-classidentifier-string-callbackmethod-int-priority--null-int-acceptedargs--null)
+  - [Action and Filter](#action-and-filter)
 - [Frequently Asked Questions](#frequently-asked-questions)
   - [Do you have an example plugin that use this package?](#do-you-have-an-example-plugin-that-use-this-package)
 - [Support!](#support)
@@ -141,38 +138,24 @@ Example:
 $loader->run();
 ```
 
-### Action
+### Action and Filter
 
-Holds necessary information for an action.
+Holds necessary information for an action or a filter.
 
-Subclass of `AbstractHook`.
+Both `Action` and `Filter` are subclasses of `AbstractHook`.
 
-#### Action::__construct(string $hook, string $classIdentifier, string $callbackMethod, int $priority = null, int $acceptedArgs = null)
+AbstractHook constructor.
 
-Action constructor.
-
-* @param string   $hook            The name of the WordPress hook that is being registered.
-* @param string   $classIdentifier Identifier of the entry to look for from container.
-* @param string   $callbackMethod  The callback method name.
-* @param int|null $priority        Optional.The priority at which the function should be fired. Default is 10.
-* @param int|null $acceptedArgs    Optional. The number of arguments that should be passed to the $callback. Default is 1.
-
-### Filter
-
-Holds necessary information for a filter.
-
-Subclass of `AbstractHook`.
-
-#### Filter::__construct(string $hook, string $classIdentifier, string $callbackMethod, int $priority = null, int $acceptedArgs = null)
-
-Filter constructor.
+```php
+Action::__construct(string $hook, string $classIdentifier, string $callbackMethod, int $priority = null, int $acceptedArgs = null)
+Filter::__construct(string $hook, string $classIdentifier, string $callbackMethod, int $priority = null, int $acceptedArgs = null)
+```
 
 * @param string   $hook            The name of the WordPress hook that is being registered.
 * @param string   $classIdentifier Identifier of the entry to look for from container.
 * @param string   $callbackMethod  The callback method name.
 * @param int|null $priority        Optional.The priority at which the function should be fired. Default is 10.
 * @param int|null $acceptedArgs    Optional. The number of arguments that should be passed to the $callback. Default is 1.
-
 
 ## Frequently Asked Questions
 
