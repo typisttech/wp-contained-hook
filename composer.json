@@ -37,9 +37,9 @@
         "league/container": "^2.4"
     },
     "require-dev": {
-        "codeception/aspect-mock": "^2.0",
-        "codeception/base": "^2.2",
-        "neronmoon/scriptsdev": "^0.1.1",
+        "codeception/aspect-mock": "^2.1",
+        "codeception/base": "^2.3",
+        "neronmoon/scriptsdev": "^0.1.2",
         "wp-coding-standards/wpcs": "^0.14.0"
     },
     "autoload": {
