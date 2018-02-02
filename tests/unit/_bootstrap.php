@@ -14,7 +14,6 @@ $kernel->init([
     ],
 ]);
 
-
 /**
  * Empty WordPress functions.
  *
