@@ -1,9 +1,9 @@
 {
     "name": "typisttech/wp-contained-hook",
-    "type": "library",
     "description": "Lazily instantiate objects from dependency injection container to WordPress hooks (actions and filters)",
     "keywords": [
         "action",
+        "league",
         "container",
         "dependency",
         "di",
@@ -12,18 +12,18 @@
         "injection",
         "wordpress"
     ],
-    "homepage": "https://www.typist.tech/projects/wp-contained-hook",
+    "homepage": "https://typist.tech/projects/wp-contained-hook",
     "license": "MIT",
     "authors": [
         {
             "name": "Typist Tech",
             "email": "wp-contained-hook@typist.tech",
-            "homepage": "https://www.typist.tech"
+            "homepage": "https://typist.tech"
         },
         {
             "name": "Tang Rufus",
             "email": "tangrufus@gmail.com",
-            "homepage": "https://www.typist.tech",
+            "homepage": "https://typist.tech",
             "role": "Developer"
         }
     ],
@@ -33,8 +33,8 @@
         "source": "https://github.com/TypistTech/wp-contained-hook"
     },
     "require": {
-        "php": "^7.0",
-        "league/container": "^2.4 | ^3.0"
+        "php": "^7.1",
+        "league/container": "^2.4"
     },
     "require-dev": {
         "codeception/aspect-mock": "^2.0",
