@@ -1,5 +1,25 @@
 # Change Log
 
+## [0.2.0](https://github.com/TypistTech/wp-contained-hook/tree/0.2.0) (2018-02-02)
+[Full Changelog](https://github.com/TypistTech/wp-contained-hook/compare/0.1.1...0.2.0)
+
+**Closed issues:**
+
+- Readme: Remove actions and filters [\#16](https://github.com/TypistTech/wp-contained-hook/issues/16)
+- Update .styleci.yml to typist tech config [\#9](https://github.com/TypistTech/wp-contained-hook/issues/9)
+
+**Merged pull requests:**
+
+- Add PHP 7.1 features [\#24](https://github.com/TypistTech/wp-contained-hook/pull/24) ([TangRufus](https://github.com/TangRufus))
+- Misc: Update info [\#23](https://github.com/TypistTech/wp-contained-hook/pull/23) ([TangRufus](https://github.com/TangRufus))
+- Update dependencies & bump minimum requirements [\#22](https://github.com/TypistTech/wp-contained-hook/pull/22) ([TangRufus](https://github.com/TangRufus))
+- Scrutinizer: Remove `align\_assignments` [\#21](https://github.com/TypistTech/wp-contained-hook/pull/21) ([TangRufus](https://github.com/TangRufus))
+- Fix broken link [\#19](https://github.com/TypistTech/wp-contained-hook/pull/19) ([TangRufus](https://github.com/TangRufus))
+- Rename: CONDUCT.md --\> CODE\_OF\_CONDUCT.md [\#17](https://github.com/TypistTech/wp-contained-hook/pull/17) ([TangRufus](https://github.com/TangRufus))
+- Add usage examples [\#15](https://github.com/TypistTech/wp-contained-hook/pull/15) ([TangRufus](https://github.com/TangRufus))
+- Update typist tech config [\#14](https://github.com/TypistTech/wp-contained-hook/pull/14) ([TangRufus](https://github.com/TangRufus))
+- composer update [\#13](https://github.com/TypistTech/wp-contained-hook/pull/13) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.1.1](https://github.com/TypistTech/wp-contained-hook/tree/0.1.1) (2017-04-19)
 [Full Changelog](https://github.com/TypistTech/wp-contained-hook/compare/0.1.0...0.1.1)
 
@@ -9,6 +29,7 @@
 
 **Merged pull requests:**
 
+- Version Bump 0.1.1 [\#11](https://github.com/TypistTech/wp-contained-hook/pull/11) ([TangRufus](https://github.com/TangRufus))
 - Prepare for league/container 3.0 [\#10](https://github.com/TypistTech/wp-contained-hook/pull/10) ([TangRufus](https://github.com/TangRufus))
 - Disable codecov.io pull request commenting [\#8](https://github.com/TypistTech/wp-contained-hook/pull/8) ([TangRufus](https://github.com/TangRufus))
 - Fix wrong link [\#7](https://github.com/TypistTech/wp-contained-hook/pull/7) ([TangRufus](https://github.com/TangRufus))
