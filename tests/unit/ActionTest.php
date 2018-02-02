@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace TypistTech\WPContainedHook;
 
 use AspectMock\Test;
+use Codeception\Test\Unit;
 use League\Container\Container;
 use TypistTech\WPContainedHook\Test\Spy;
 
 /**
  * @coversDefaultClass \TypistTech\WPContainedHook\Action
  */
-class ActionTest extends \Codeception\Test\Unit
+class ActionTest extends Unit
 {
     use AbstractHookTestTrait;
 
@@ -84,9 +85,9 @@ class ActionTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $this->spy = new Spy;
+        $this->spy = new Spy();
 
-        $this->containerMock = Test::double(new Container, [
+        $this->containerMock = Test::double(new Container(), [
             'get' => $this->spy,
         ]);
         $this->container = $this->containerMock->getObject();

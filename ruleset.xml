@@ -25,6 +25,8 @@
     <exclude-pattern>/tests/_output/*</exclude-pattern>
     <exclude-pattern>/vendor/*</exclude-pattern>
 
+    <config name="minimum_supported_wp_version" value="4.7"/>
+
     <rule ref="PSR2"/>
 
     <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
@@ -33,6 +35,7 @@
 
     <rule ref="WordPress">
         <exclude name="Generic.Classes.OpeningBraceSameLine.BraceOnNewLine"/>
+        <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning"/>
         <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie.BraceOnNewLine"/>
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
 
@@ -42,6 +45,8 @@
         <exclude name="Squiz.Commenting.FunctionComment.IncorrectTypeHint"/>
         <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterOpen"/>
         <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterOpenHint"/>
+
+        <exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned"/>
 
         <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
 
@@ -62,12 +67,6 @@
     <rule ref="WordPress.Files.FileName">
         <properties>
             <property name="strict_class_file_names" value="false"/>
-        </properties>
-    </rule>
-
-    <rule ref="WordPress.WP.DeprecatedFunctions">
-        <properties>
-            <property name="minimum_supported_version" value="4.6"/>
         </properties>
     </rule>
 

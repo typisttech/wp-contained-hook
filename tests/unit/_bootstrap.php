@@ -13,3 +13,16 @@ $kernel->init([
         codecept_root_dir('vendor/league/container/src/'),
     ],
 ]);
+
+/**
+ * Empty WordPress functions.
+ *
+ * Define them here for `AspectMock` to mock them.
+ */
+function add_action()
+{
+}
+
+function add_filter()
+{
+}

@@ -1,9 +1,5 @@
 language: php
 
-dist: trusty
-
-sudo: false
-
 branches:
   only:
     - master
@@ -20,30 +16,32 @@ notifications:
     on_failure: change
 
 php:
-  - 7.0
-  - 7.1
+  - 7.2
   - nightly
 
 env:
   global:
     - COMPOSER_NO_INTERACTION=1
-  matrix:
-    - COMPOSER_DEPENDENCIES="highest"
-    - COMPOSER_DEPENDENCIES=""
 
 matrix:
+  include:
+    - php: '7.1'
+      env: WITH_COVERAGE=true
   allow_failures:
     - php: nightly
   fast_finish: true
 
-before_script:
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.0" && "$COMPOSER_DEPENDENCIES" == "" ]]; then WITH_COVERAGE=true; fi
+before_install:
+  - |
+    # Remove Xdebug for a huge performance increase:
+    if [[ "$WITH_COVERAGE" != "true" && -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ]]; then
+      phpenv config-rm xdebug.ini
+    else
+      echo "xdebug.ini does not exist"
+    fi
 
-  # Disable xDebug to speed up the build unless test coverage is needed
-  - if [[ "$WITH_COVERAGE" != "true" && $(phpenv version-name) != "nightly" ]]; then phpenv config-rm xdebug.ini; fi
-
-  - if [[ "$COMPOSER_DEPENDENCIES" == "highest" ]]; then travis_retry composer update --prefer-dist; fi
-  - if [[ "$COMPOSER_DEPENDENCIES" == "" ]]; then travis_retry composer install --prefer-dist; fi
+install:
+  - travis_retry composer install --prefer-dist
 
 script:
   - if [[ "$WITH_COVERAGE" != "true" ]]; then composer test; fi

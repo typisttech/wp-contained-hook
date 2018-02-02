@@ -84,7 +84,7 @@ trait AbstractHookTestTrait
      */
     public function testRegisterToContainer()
     {
-        $container = new Container;
+        $container = new Container();
         $subject = $this->getSubject('hookOne', 'classOne', 'methodOne', 100, 11);
         $subject->setContainer($container);
 
@@ -99,7 +99,7 @@ trait AbstractHookTestTrait
      */
     public function testSetContainer()
     {
-        $container = new Container;
+        $container = new Container();
         $subject = $this->getSubject('hookOne', 'classOne', 'methodOne', 100, 11);
 
         $subject->setContainer($container);
