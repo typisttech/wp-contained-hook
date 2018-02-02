@@ -61,7 +61,7 @@ final class Loader
      *
      * @return void
      */
-    public function add(AbstractHook ...$hooks)
+    public function add(AbstractHook ...$hooks): void
     {
         $this->hooks = array_unique(
             array_merge($this->hooks, $hooks),
@@ -74,7 +74,7 @@ final class Loader
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         foreach ($this->hooks as $hook) {
             $hook->setContainer($this->container);

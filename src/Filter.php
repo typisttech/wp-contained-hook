@@ -23,12 +23,12 @@ namespace TypistTech\WPContainedHook;
  */
 final class Filter extends AbstractHook
 {
-    const ID_PREFIX = 'filter';
+    protected const ID_PREFIX = 'filter';
 
     /**
      * {@inheritdoc}
      */
-    public function registerToWordPress()
+    public function registerToWordPress(): void
     {
         add_filter(
             $this->hook,

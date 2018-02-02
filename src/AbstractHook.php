@@ -28,7 +28,7 @@ abstract class AbstractHook implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
-    const ID_PREFIX = 'hook';
+    protected const ID_PREFIX = 'hook';
 
     /**
      * The number of arguments that should be passed to the $callback.
@@ -94,7 +94,7 @@ abstract class AbstractHook implements ContainerAwareInterface
      *
      * @return void
      */
-    abstract public function registerToWordPress();
+    abstract public function registerToWordPress(): void;
 
     /**
      * The actual callback that WordPress going to fire.
@@ -110,7 +110,7 @@ abstract class AbstractHook implements ContainerAwareInterface
      *
      * @return void
      */
-    public function registerToContainer()
+    public function registerToContainer(): void
     {
         $this->container->add(
             $this->getId(),
