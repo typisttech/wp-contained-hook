@@ -22,6 +22,7 @@ php:
 env:
   global:
     - COMPOSER_NO_INTERACTION=1
+    - TMPDIR=/tmp/
 
 matrix:
   include:
@@ -32,13 +33,8 @@ matrix:
   fast_finish: true
 
 before_install:
-  - |
-    # Remove Xdebug for a huge performance increase:
-    if [[ "$WITH_COVERAGE" != "true" && -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ]]; then
-      phpenv config-rm xdebug.ini
-    else
-      echo "xdebug.ini does not exist"
-    fi
+  - $WITH_COVERAGE || phpenv config-rm xdebug.ini || true
+  - mkdir -p $TMPDIR/AspectMock/wp-contained-hook
 
 install:
   - travis_retry composer install --prefer-dist

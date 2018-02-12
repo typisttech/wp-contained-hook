@@ -8,6 +8,7 @@ use AspectMock\Kernel;
 $kernel = Kernel::getInstance();
 $kernel->init([
     'debug' => true,
+    'cacheDir' => getenv('TMPDIR') . 'AspectMock/wp-contained-hook',
     'includePaths' => [
         codecept_root_dir('src/'),
         codecept_root_dir('vendor/league/container/src/'),
