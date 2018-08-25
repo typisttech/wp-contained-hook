@@ -17,10 +17,6 @@ notifications:
     on_success: never
     on_failure: change
 
-php:
-  - 7.2
-  - nightly
-
 env:
   global:
     - COMPOSER_NO_INTERACTION=1
@@ -32,20 +28,23 @@ matrix:
 fast_finish: true
 
 before_install:
-  - composer validate
+  - phpenv config-rm xdebug.ini || true
 
 install:
   - travis_retry composer install --no-progress --no-suggest
 
 script:
-  - composer test:coverage
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash) -s "$TRAVIS_BUILD_DIR/tests/_output/"
+  - composer test
 
 jobs:
   include:
+    - stage: test
+      php: 7.2
+      before_install: skip
+      script: composer test:coverage
+      after_success: bash <(curl -s https://codecov.io/bash) -s "$TRAVIS_BUILD_DIR/tests/_output/"
+    - stage: test
+      php: nightly
     - stage: sniff
       php: 7.2
       script: composer check-style
-      after_success: skip
