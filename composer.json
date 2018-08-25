@@ -54,6 +54,11 @@
             "TypistTech\\WPContainedHook\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "TypistTech\\WPContainedHook\\Test\\": "tests/unit"
+        }
+    },
     "scripts": {
         "check-style": "phpcs --standard=ruleset.xml --colors -p -s .",
         "pre-tag": [
