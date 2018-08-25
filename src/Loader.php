@@ -43,9 +43,11 @@ class Loader implements ContainerAwareInterface
      */
     public function add(HookInterface ...$hooks): void
     {
-        $this->hooks = array_unique(
-            array_merge($this->hooks, $hooks),
-            SORT_REGULAR
+        $this->hooks = array_values(
+            array_unique(
+                array_merge($this->hooks, $hooks),
+                SORT_REGULAR
+            )
         );
     }
 
