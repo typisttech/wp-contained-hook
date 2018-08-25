@@ -2,19 +2,26 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPContainedHook\Helper;
+namespace TypistTech\WPContainedHook\Test\Helper;
 
-use AspectMock\Test;
+// here you can define custom actions
+// all public methods declared in helper class will be available in $I
+
+use Codeception\Module;
 use Codeception\TestInterface;
+use Mockery;
+use WP_Mock;
 
-/**
- * Here you can define custom actions
- * All public methods declared in helper class will be available in $I
- */
-class Unit extends \Codeception\Module
+class Unit extends Module
 {
+    public function _before(TestInterface $test)
+    {
+        WP_Mock::setUp();
+    }
+
     public function _after(TestInterface $test)
     {
-        Test::clean();
+        WP_Mock::tearDown();
+        Mockery::close();
     }
 }

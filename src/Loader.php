@@ -1,71 +1,54 @@
 <?php
-/**
- * WP Contained Hook
- *
- * Lazily instantiate objects from dependency injection container
- * to WordPress hooks (actions and filters).
- *
- * @package   TypistTech\WPContainedHook
- *
- * @author    Typist Tech <wp-contained-hook@typist.tech>
- * @copyright 2017-2018 Typist Tech
- * @license   MIT
- *
- * @see       https://www.typist.tech/projects/wp-contained-hook
- */
 
 declare(strict_types=1);
 
 namespace TypistTech\WPContainedHook;
 
-use League\Container\ContainerInterface as Container;
+use Psr\Container\ContainerInterface;
+use TypistTech\WPContainedHook\Hooks\HookInterface;
 
 /**
- * Register all actions and filters for the plugin.
+ * Register all actions and filters for the plugin/package/theme.
  *
  * Maintain a list of all hooks that are registered throughout
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  */
-final class Loader
+class Loader implements ContainerAwareInterface
 {
-    /**
-     * The container.
-     *
-     * @var Container
-     */
-    private $container;
+    use ContainerAwareTrait;
 
     /**
      * Array of hooks registered with WordPress.
      *
-     * @var AbstractHook[]
+     * @var HookInterface[]
      */
-    private $hooks;
+    protected $hooks = [];
 
     /**
      * Initialize the collections used to maintain the hooks.
      *
-     * @param Container $container The container.
+     * @param ContainerInterface $container The container.
      */
-    public function __construct(Container $container)
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
-        $this->hooks = [];
     }
 
     /**
      * Add new hooks to the collection to be registered with WordPress.
      *
-     * @param AbstractHook|AbstractHook[] ...$hooks Hooks to be registered.
+     * @param HookInterface|HookInterface[] ...$hooks Hooks to be registered.
      *
      * @return void
      */
-    public function add(AbstractHook ...$hooks): void
+    public function add(HookInterface ...$hooks): void
     {
-        $this->hooks = array_unique(
-            array_merge($this->hooks, $hooks),
-            SORT_REGULAR
+        $this->hooks = array_values(
+            array_unique(
+                array_merge($this->hooks, $hooks),
+                SORT_REGULAR
+            )
         );
     }
 
@@ -78,8 +61,7 @@ final class Loader
     {
         foreach ($this->hooks as $hook) {
             $hook->setContainer($this->container);
-            $hook->registerToContainer();
-            $hook->registerToWordPress();
+            $hook->register();
         }
     }
 }

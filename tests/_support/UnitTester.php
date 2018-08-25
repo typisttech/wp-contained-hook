@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPContainedHook;
+namespace TypistTech\WPContainedHook\Test;
+
+use Codeception\Actor;
 
 /**
  * Inherited Methods
@@ -20,7 +22,7 @@ namespace TypistTech\WPContainedHook;
  *
  * @SuppressWarnings(PHPMD)
  */
-class UnitTester extends \Codeception\Actor
+class UnitTester extends Actor
 {
     use _generated\UnitTesterActions;
 

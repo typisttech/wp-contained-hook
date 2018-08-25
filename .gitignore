@@ -1,10 +1,4 @@
-### Build ###
-/build/
-/release/
-
 ### Codeception ###
-/codeception.yml
-/tests/*.suite.yml
 /tests/_output/*
 /tests/_support/_generated/
 
@@ -12,11 +6,5 @@
 /composer.lock
 /vendor/
 
-### npm ###
-/node_modules/
-
 ### PhpStorm ###
 /.idea/
-
-### i18n ###
-/languages/

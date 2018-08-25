@@ -2,152 +2,73 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPContainedHook;
+namespace TypistTech\WPContainedHook\Test;
 
-use AspectMock\Test;
 use Codeception\Test\Unit;
-use League\Container\Container;
+use Mockery;
+use Psr\Container\ContainerInterface;
+use TypistTech\WPContainedHook\ContainerAwareInterface;
+use TypistTech\WPContainedHook\Hooks\Action;
+use TypistTech\WPContainedHook\Hooks\Filter;
+use TypistTech\WPContainedHook\Loader;
 
-/**
- * @coversDefaultClass \TypistTech\WPContainedHook\Loader
- */
 class LoaderTest extends Unit
 {
-    /**
-     * @var Action
-     */
-    private $actionOne;
+    use ContainerAwareTestTrait;
 
     /**
-     * @var Action
+     * @var \TypistTech\WPContainedHook\Test\UnitTester
      */
-    private $actionTwo;
+    protected $tester;
 
-    /**
-     * @var \Psr\Container\ContainerInterface
-     */
-    private $container;
-
-    /**
-     * @var Filter
-     */
-    private $filterOne;
-
-    /**
-     * @var Filter
-     */
-    private $filterTwo;
-
-    /**
-     * @var Loader
-     */
-    private $loader;
-
-    /**
-     * @covers \TypistTech\WPContainedHook\Loader::add
-     */
-    public function testAddHookMultipleTimes()
+    public function testAdd()
     {
-        $this->loader->add($this->actionOne);
-        $this->loader->add($this->filterOne);
+        $container = Mockery::mock(ContainerInterface::class);
 
-        $this->assertAttributeSame(
-            [ $this->actionOne, $this->filterOne ],
-            'hooks',
-            $this->loader
-        );
+        $loader = new Loader($container);
+
+        $action = Mockery::mock(Action::class);
+        $filter = Mockery::mock(Filter::class);
+
+        $loader->add($action);
+        $loader->add($action, $filter);
+
+        $this->assertAttributeSame([
+            $action,
+            $filter,
+        ], 'hooks', $loader);
     }
 
-    /**
-     * @covers \TypistTech\WPContainedHook\Loader::add
-     */
-    public function testAddHookUniqueness()
-    {
-        $this->loader->add($this->filterOne);
-        $this->loader->add($this->filterTwo);
-        $this->loader->add($this->filterOne);
-
-        $this->assertAttributeSame(
-            [ $this->filterOne, $this->filterTwo ],
-            'hooks',
-            $this->loader
-        );
-    }
-
-    /**
-     * @covers \TypistTech\WPContainedHook\Loader::add
-     */
-    public function testAddMultipleHooksAtOnce()
-    {
-        $this->loader->add($this->actionOne, $this->filterOne);
-
-        $this->assertAttributeSame(
-            [ $this->actionOne, $this->filterOne ],
-            'hooks',
-            $this->loader
-        );
-    }
-
-    /**
-     * @covers \TypistTech\WPContainedHook\Loader::add
-     */
-    public function testAddSingleHook()
-    {
-        $this->loader->add($this->actionOne);
-
-        $this->assertAttributeSame(
-            [ $this->actionOne ],
-            'hooks',
-            $this->loader
-        );
-    }
-
-    /**
-     * @covers \TypistTech\WPContainedHook\Loader::__construct
-     */
-    public function testConstructor()
-    {
-        $this->assertAttributeSame(
-            $this->container,
-            'container',
-            $this->loader
-        );
-    }
-
-    /**
-     * @covers \TypistTech\WPContainedHook\Loader::run
-     */
     public function testRun()
     {
-        Test::func(__NAMESPACE__, 'add_action', true);
-        Test::func(__NAMESPACE__, 'add_filter', true);
+        $container = Mockery::mock(ContainerInterface::class);
 
-        $actionMock = Test::double($this->actionOne);
-        $filterMock = Test::double($this->filterOne);
-        $this->loader->add($actionMock->getObject());
-        $this->loader->add($filterMock->getObject());
+        $action = Mockery::mock(Action::class);
+        $action->expects('setContainer')
+               ->with($container)
+               ->once();
+        $action->expects('register')
+               ->withNoArgs()
+               ->once();
 
-        $this->loader->run();
+        $filter = Mockery::mock(Filter::class);
+        $filter->expects('setContainer')
+               ->with($container)
+               ->once();
+        $filter->expects('register')
+               ->withNoArgs()
+               ->once();
 
-        $actionMock->verifyInvokedMultipleTimes('setContainer', 1);
-        $actionMock->verifyInvokedOnce('setContainer', [ $this->container ]);
-        $actionMock->verifyInvokedOnce('registerToContainer');
-        $actionMock->verifyInvokedOnce('registerToWordPress');
+        $loader = new Loader($container);
+        $loader->add($action, $filter);
 
-        $filterMock->verifyInvokedMultipleTimes('setContainer', 1);
-        $filterMock->verifyInvokedOnce('setContainer', [ $this->container ]);
-        $filterMock->verifyInvokedOnce('registerToContainer');
-        $filterMock->verifyInvokedOnce('registerToWordPress');
+        $loader->run();
     }
 
-    protected function _before()
+    protected function getSubject(): ContainerAwareInterface
     {
-        $this->container = new Container();
-        $this->loader = new Loader($this->container);
+        $container = Mockery::mock(ContainerInterface::class);
 
-        $this->actionOne = new Action('hookOne', 'classOne', 'method', 10, 1);
-        $this->actionTwo = new Action('hookTwo', 'classTwo', 'method', 20, 2);
-        $this->filterOne = new Filter('hookThree', 'classThree', 'method', 30, 3);
-        $this->filterTwo = new Filter('hookFour', 'classFour', 'method', 40, 4);
+        return new Loader($container);
     }
 }

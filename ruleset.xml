@@ -1,37 +1,16 @@
 <?xml version="1.0"?>
-<!--
-  ~ WP Contained Hook
-  ~
-  ~ Lazily instantiate objects from dependency injection container
-  ~ to WordPress hooks (actions and filters).
-  ~
-  ~ @package TypistTech\WPContainedHook
-  ~ @author Typist Tech <wp-contained-hook@typist.tech>
-  ~ @copyright 2017-2018 Typist Tech
-  ~ @license MIT
-  ~ @see https://www.typist.tech/projects/wp-contained-hook
-  -->
+<ruleset name="PSR 2 plus WordPress Coding Standards">
 
-<ruleset name="PSR 2 and WordPress Coding Standards for Plugins">
+    <description>PSR 2 plus WordPress Coding Standards</description>
 
-    <description>PSR 2 and WordPress Coding Standards for Plugins</description>
+    <config name="installed_paths" value="vendor/wp-coding-standards/wpcs,vendor/automattic/vipwpcs"/>
+    <config name="minimum_supported_wp_version" value="4.9"/>
 
-    <exclude-pattern>*.js</exclude-pattern>
-    <exclude-pattern>/build/*</exclude-pattern>
-    <exclude-pattern>/lib/*</exclude-pattern>
-    <exclude-pattern>/node_modules/*</exclude-pattern>
-    <exclude-pattern>/release/*</exclude-pattern>
-    <exclude-pattern>/tests/_data/*</exclude-pattern>
-    <exclude-pattern>/tests/_output/*</exclude-pattern>
+    <file>./</file>
+    <exclude-pattern>/tests/*</exclude-pattern>
     <exclude-pattern>/vendor/*</exclude-pattern>
 
-    <config name="minimum_supported_wp_version" value="4.7"/>
-
     <rule ref="PSR2"/>
-
-    <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
-        <exclude-pattern>/*.php</exclude-pattern>
-    </rule>
 
     <rule ref="WordPress">
         <exclude name="Generic.Classes.OpeningBraceSameLine.BraceOnNewLine"/>
@@ -42,12 +21,16 @@
         <exclude name="PEAR.Functions.FunctionCallSignature.SpaceAfterOpenBracket"/>
         <exclude name="PEAR.Functions.FunctionCallSignature.SpaceBeforeCloseBracket"/>
 
-        <exclude name="Squiz.Commenting.FunctionComment.IncorrectTypeHint"/>
+        <exclude name="Squiz.Commenting.ClassComment.Missing"/>
+        <exclude name="Squiz.Commenting.FileComment.Missing"/>
         <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterOpen"/>
-        <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterOpenHint"/>
 
+        <exclude name="WordPress.Arrays.ArrayDeclarationSpacing.NoSpaceAfterArrayOpener"/>
+        <exclude name="WordPress.Arrays.ArrayDeclarationSpacing.NoSpaceBeforeArrayCloser"/>
+        <exclude name="WordPress.Arrays.ArrayKeySpacingRestrictions.NoSpacesAroundArrayKeys"/>
         <exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned"/>
 
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
         <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
 
         <exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid"/>
@@ -55,67 +38,11 @@
         <exclude name="WordPress.NamingConventions.ValidVariableName.NotSnakeCase"/>
         <exclude name="WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar"/>
 
-        <exclude name="WordPress.WhiteSpace.CastStructureSpacing.NoSpaceBeforeOpenParenthesis"/>
-        <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.OpenBraceNotSameLine"/>
-        <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceAfterCloseParenthesis"/>
+        <exclude name="WordPress.WhiteSpace.ArbitraryParenthesesSpacing.SpaceAfterOpen"/>
+        <exclude name="WordPress.WhiteSpace.ArbitraryParenthesesSpacing.SpaceBeforeClose"/>
+        <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.ExtraSpaceAfterCloseParenthesis"/>
         <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceAfterOpenParenthesis"/>
         <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceBeforeCloseParenthesis"/>
-        <exclude name="WordPress.WhiteSpace.OperatorSpacing.NoSpaceAfter"/>
         <exclude name="WordPress.WhiteSpace.OperatorSpacing.NoSpaceBefore"/>
     </rule>
-
-    <rule ref="WordPress.Files.FileName">
-        <properties>
-            <property name="strict_class_file_names" value="false"/>
-        </properties>
-    </rule>
-
-    <rule ref="WordPress.WP.I18n">
-        <properties>
-            <property name="text_domain" type="array" value="wp-contained-hook"/>
-        </properties>
-    </rule>
-
-    <!--Tests-->
-
-    <rule ref="Squiz.Commenting.FileComment.WrongStyle">
-        <exclude-pattern>*/_bootstrap.php</exclude-pattern>
-    </rule>
-
-    <rule ref="Squiz.Commenting.InlineComment.SpacingAfter">
-        <exclude-pattern>*/_bootstrap.php</exclude-pattern>
-    </rule>
-
-    <rule ref="Squiz.Commenting.ClassComment.Missing">
-        <exclude-pattern>/tests/*</exclude-pattern>
-    </rule>
-
-    <rule ref="Generic.Commenting.DocComment.MissingShort">
-        <exclude-pattern>/tests/*</exclude-pattern>
-    </rule>
-
-    <rule ref="PSR2.Methods.MethodDeclaration.Underscore">
-        <exclude-pattern>/tests/*</exclude-pattern>
-    </rule>
-
-    <rule ref="Squiz.Commenting.FileComment.Missing">
-        <exclude-pattern>/tests/*</exclude-pattern>
-    </rule>
-
-    <rule ref="Squiz.Commenting.FunctionComment.Missing">
-        <exclude-pattern>/tests/*</exclude-pattern>
-    </rule>
-
-    <rule ref="WordPress.VIP.RestrictedVariables">
-        <exclude-pattern>/tests/*</exclude-pattern>
-    </rule>
-
-    <rule ref="WordPress.VIP.SuperGlobalInputUsage">
-        <exclude-pattern>/tests/*</exclude-pattern>
-    </rule>
-
-    <rule ref="WordPress.VIP.ValidatedSanitizedInput">
-        <exclude-pattern>/tests/*</exclude-pattern>
-    </rule>
-
 </ruleset>

@@ -3,14 +3,13 @@
     "description": "Lazily instantiate objects from dependency injection container to WordPress hooks (actions and filters)",
     "keywords": [
         "action",
-        "league",
         "container",
-        "dependency",
+        "dependency-injection",
         "di",
         "filter",
         "hook",
-        "injection",
-        "wordpress"
+        "wordpress",
+        "wp"
     ],
     "homepage": "https://typist.tech/projects/wp-contained-hook",
     "license": "MIT",
@@ -27,20 +26,29 @@
             "role": "Developer"
         }
     ],
-    "support": {
-        "email": "wp-contained-hook@typist.tech",
-        "issues": "https://github.com/TypistTech/wp-contained-hook/issues",
-        "source": "https://github.com/TypistTech/wp-contained-hook"
-    },
     "require": {
-        "php": "^7.1",
-        "league/container": "^2.4"
+        "php": "^7.2",
+        "psr/container": "^1.0",
+        "psr/container-implementation": "^1.0"
     },
     "require-dev": {
-        "codeception/aspect-mock": "^2.1",
+        "10up/wp_mock": "^0.3.0",
+        "automattic/vipwpcs": "dev-master",
         "codeception/base": "^2.3",
-        "neronmoon/scriptsdev": "^0.1.2",
-        "wp-coding-standards/wpcs": "^0.14.0"
+        "league/container": "^3.2",
+        "roave/security-advisories": "dev-master",
+        "wp-coding-standards/wpcs": "^1.0"
+    },
+    "suggest": {
+        "typisttech/imposter-plugin": "Wrap all composer vendor packages inside your own namespace, to prevent collisions when multiple plugins use this library"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.3.x-dev"
+        }
     },
     "autoload": {
         "psr-4": {
@@ -49,33 +57,24 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "TypistTech\\WPContainedHook\\Test\\": "tests/_data"
-        },
-        "files": [
-            "tests/unit/AbstractHookTestTrait.php"
-        ]
-    },
-    "suggest": {
-        "typisttech/imposter-plugin": "Wrap all composer vendor packages inside your own namespace, to prevent collisions when multiple plugins use this library"
+            "TypistTech\\WPContainedHook\\Test\\": "tests/unit"
+        }
     },
     "scripts": {
         "check-style": "phpcs --standard=ruleset.xml --colors -p -s .",
-        "install-dev-extra": "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
         "pre-tag": [
             "composer update",
+            "@test",
+            "composer normalize",
             "doctoc README.md",
             "github_changelog_generator --no-verbose"
         ],
         "test": "codecept run",
-        "test-with-coverage": "codecept run --coverage --coverage-html --coverage-xml"
+        "test:coverage": "codecept run --coverage --coverage-html --coverage-xml"
     },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "scripts-dev": {
-            "post-install-cmd": "@install-dev-extra",
-            "post-update-cmd": "@install-dev-extra"
-        }
+    "support": {
+        "email": "wp-contained-hook@typist.tech",
+        "issues": "https://github.com/TypistTech/wp-contained-hook/issues",
+        "source": "https://github.com/TypistTech/wp-contained-hook"
     }
 }

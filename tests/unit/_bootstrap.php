@@ -1,29 +1,8 @@
 <?php
 
 declare(strict_types=1);
-// Here you can initialize variables that will be available to your tests.
+require_once codecept_root_dir('vendor/autoload.php'); // Composer autoload.
 
-use AspectMock\Kernel;
-
-$kernel = Kernel::getInstance();
-$kernel->init([
-    'debug' => true,
-    'cacheDir' => getenv('TMPDIR') . 'AspectMock/wp-contained-hook',
-    'includePaths' => [
-        codecept_root_dir('src/'),
-        codecept_root_dir('vendor/league/container/src/'),
-    ],
-]);
-
-/**
- * Empty WordPress functions.
- *
- * Define them here for `AspectMock` to mock them.
- */
-function add_action()
-{
-}
-
-function add_filter()
-{
-}
+// Now call the bootstrap method of WP Mock.
+WP_Mock::activateStrictMode();
+WP_Mock::bootstrap();
