@@ -5,8 +5,6 @@ namespace TypistTech\WPContainedHook\Hooks;
 
 class Action extends AbstractHook
 {
-    protected const ID_PREFIX = 'action';
-
     /**
      * {@inheritdoc}
      */

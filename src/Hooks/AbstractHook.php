@@ -9,8 +9,6 @@ abstract class AbstractHook implements HookInterface
 {
     use ContainerAwareTrait;
 
-    protected const ID_PREFIX = self::ID_PREFIX;
-
     /**
      * The number of arguments that should be passed to the $callback.
      *
@@ -60,8 +58,8 @@ abstract class AbstractHook implements HookInterface
         string $hook,
         string $classIdentifier,
         string $callbackMethod,
-        int $priority = null,
-        int $acceptedArgs = null
+        ?int $priority = null,
+        ?int $acceptedArgs = null
     ) {
         $this->hook = $hook;
         $this->classIdentifier = $classIdentifier;
@@ -69,24 +67,4 @@ abstract class AbstractHook implements HookInterface
         $this->priority = $priority ?? 10;
         $this->acceptedArgs = $acceptedArgs ?? 1;
     }
-
-    /**
-     * Add this hook to WordPress via:
-     * - add_action
-     * - add_filter
-     * - WP_CLI::add_wp_hook
-     * - WP_CLI::add_hook
-     *
-     * @return void
-     */
-    abstract public function register(): void;
-
-    /**
-     * The actual callback that WordPress going to fire.
-     *
-     * @param mixed ...$args Arguments which pass on to the actual instance.
-     *
-     * @return mixed
-     */
-    abstract public function run(...$args);
 }

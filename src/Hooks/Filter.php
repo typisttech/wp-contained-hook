@@ -5,8 +5,6 @@ namespace TypistTech\WPContainedHook\Hooks;
 
 class Filter extends AbstractHook
 {
-    protected const ID_PREFIX = 'filter';
-
     /**
      * {@inheritdoc}
      */
