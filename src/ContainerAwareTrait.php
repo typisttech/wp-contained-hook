@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace TypistTech\WPContainedHook;
@@ -18,9 +19,9 @@ trait ContainerAwareTrait
     /**
      * Get the container.
      *
-     * @return ContainerInterface
-     *
      * @throws ContainerException If no container has been set.
+     *
+     * @return ContainerInterface
      */
     public function getContainer(): ContainerInterface
     {

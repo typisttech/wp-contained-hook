@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace TypistTech\WPContainedHook;
@@ -20,9 +21,9 @@ interface ContainerAwareInterface
     /**
      * Get the container.
      *
-     * @return ContainerInterface
-     *
      * @throws ContainerException If no container implementation has been set.
+     *
+     * @return ContainerInterface
      */
     public function getContainer(): ContainerInterface;
 }
