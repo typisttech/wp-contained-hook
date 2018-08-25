@@ -1,34 +1,15 @@
 <?php
-/**
- * WP Contained Hook
- *
- * Lazily instantiate objects from dependency injection container
- * to WordPress hooks (actions and filters).
- *
- * @package   TypistTech\WPContainedHook
- *
- * @author    Typist Tech <wp-contained-hook@typist.tech>
- * @copyright 2017-2018 Typist Tech
- * @license   MIT
- *
- * @see       https://www.typist.tech/projects/wp-contained-hook
- */
-
 declare(strict_types=1);
 
-namespace TypistTech\WPContainedHook;
+namespace TypistTech\WPContainedHook\Hooks;
 
-use League\Container\ContainerAwareInterface;
-use League\Container\ContainerAwareTrait;
+use TypistTech\WPContainedHook\ContainerAwareTrait;
 
-/**
- * Abstract class AbstractHook.
- */
-abstract class AbstractHook implements ContainerAwareInterface
+abstract class AbstractHook implements HookInterface
 {
     use ContainerAwareTrait;
 
-    protected const ID_PREFIX = 'hook';
+    protected const ID_PREFIX = self::ID_PREFIX;
 
     /**
      * The number of arguments that should be passed to the $callback.
@@ -90,50 +71,22 @@ abstract class AbstractHook implements ContainerAwareInterface
     }
 
     /**
-     * Add this hook to WordPress via add_action or add_filter.
+     * Add this hook to WordPress via:
+     * - add_action
+     * - add_filter
+     * - WP_CLI::add_wp_hook
+     * - WP_CLI::add_hook
      *
      * @return void
      */
-    abstract public function registerToWordPress(): void;
+    abstract public function register(): void;
 
     /**
      * The actual callback that WordPress going to fire.
      *
-     * @param array ...$args Arguments which pass on to the actual instance.
+     * @param mixed ...$args Arguments which pass on to the actual instance.
      *
      * @return mixed
      */
     abstract public function run(...$args);
-
-    /**
-     * Add this instance to container.
-     *
-     * @return void
-     */
-    public function registerToContainer(): void
-    {
-        $this->container->add(
-            $this->getId(),
-            $this,
-            true
-        );
-    }
-
-    /**
-     * ID getter.
-     *
-     * @return string
-     */
-    public function getId(): string
-    {
-        return sprintf(
-            '%1$s-%2$s-%3$s-%4$s-%5$d-%6$d',
-            static::ID_PREFIX,
-            $this->hook,
-            $this->classIdentifier,
-            $this->callbackMethod,
-            $this->priority,
-            $this->acceptedArgs
-        );
-    }
 }

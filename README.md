@@ -4,8 +4,7 @@
 [![Total Downloads](https://poser.pugx.org/typisttech/wp-contained-hook/downloads)](https://packagist.org/packages/typisttech/wp-contained-hook)
 [![Build Status](https://travis-ci.org/TypistTech/wp-contained-hook.svg?branch=master)](https://travis-ci.org/TypistTech/wp-contained-hook)
 [![codecov](https://codecov.io/gh/TypistTech/wp-contained-hook/branch/master/graph/badge.svg)](https://codecov.io/gh/TypistTech/wp-contained-hook)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/TypistTech/wp-contained-hook/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/TypistTech/wp-contained-hook/?branch=master)
-[![PHP Versions Tested](http://php-eye.com/badge/typisttech/wp-contained-hook/tested.svg)](https://travis-ci.org/TypistTech/wp-contained-hook)
+[![PHP Versions Tested](https://php-eye.com/badge/typisttech/wp-contained-hook/tested.svg)](https://travis-ci.org/TypistTech/wp-contained-hook)
 [![StyleCI](https://styleci.io/repos/86774587/shield?branch=master)](https://styleci.io/repos/86774587)
 [![License](https://poser.pugx.org/typisttech/wp-contained-hook/license)](https://packagist.org/packages/typisttech/wp-contained-hook)
 [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://typist.tech/donate/wp-contained-hook/)
@@ -32,12 +31,10 @@ Lazily instantiate objects from dependency injection container to WordPress hook
   - [Donate via PayPal *](#donate-via-paypal-)
   - [Why don't you hire me?](#why-dont-you-hire-me)
   - [Want to help in other way? Want to be a sponsor?](#want-to-help-in-other-way-want-to-be-a-sponsor)
-- [Developing](#developing)
 - [Running the Tests](#running-the-tests)
 - [Feedback](#feedback)
 - [Change log](#change-log)
 - [Security](#security)
-- [Contributing](#contributing)
 - [Credits](#credits)
 - [License](#license)
 
@@ -182,29 +179,14 @@ Ready to take freelance WordPress jobs. Contact me via the contact form [here](h
 
 Contact: [Tang Rufus](mailto:tangrufus@gmail.com)
 
-## Developing
-
-To setup a developer workable version you should run these commands:
-
-```bash
-$ composer create-project --keep-vcs --no-install typisttech/wp-contained-hook:dev-master
-$ cd wp-contained-hook
-$ composer install
-```
-
 ## Running the Tests
-
-[WP Contained Hook](https://github.com/TypistTech/wp-contained-hook) run tests on [Codeception](http://codeception.com/).
 
 Run the tests:
 
 ``` bash
 $ composer test
+$ composer check-style
 ```
-
-We also test all PHP files against [PSR-2: Coding Style Guide](http://www.php-fig.org/psr/psr-2/) and part of the [WordPress coding standard](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards).
-
-Check the code style with `$ composer check-style`.
 
 ## Feedback
 
@@ -219,10 +201,6 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 ## Security
 
 If you discover any security related issues, please email wp-contained-hook@typist.tech instead of using the issue tracker.
-
-## Contributing
-
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) and [CODE_OF_CONDUCT](.github/CODE_OF_CONDUCT.md) for details.
 
 ## Credits
 
