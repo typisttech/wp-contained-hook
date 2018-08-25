@@ -20,7 +20,7 @@ trait ContainerAwareTrait
      *
      * @return ContainerInterface
      *
-     * @throws ContainerException If no container implementation has been set.
+     * @throws ContainerException If no container has been set.
      */
     public function getContainer(): ContainerInterface
     {
@@ -28,7 +28,7 @@ trait ContainerAwareTrait
             return $this->container;
         }
 
-        throw new ContainerException('No container implementation has been set.');
+        throw new ContainerException('No container has been set.');
     }
 
     /**
