@@ -35,6 +35,7 @@
         "10up/wp_mock": "^0.3.0",
         "automattic/vipwpcs": "dev-master",
         "codeception/base": "^2.3",
+        "league/container": "^3.2",
         "roave/security-advisories": "dev-master",
         "wp-coding-standards/wpcs": "^1.0"
     },
