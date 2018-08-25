@@ -13,7 +13,7 @@ settings:
 coverage:
   enabled: true
   include:
-  - src/*
+    - src/*
 extensions:
   enabled:
-  - Codeception\Extension\RunFailed
+    - Codeception\Extension\RunFailed

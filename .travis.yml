@@ -4,13 +4,13 @@ sudo: false
 
 branches:
   only:
-  - master
-  - /^(?:(\d+)\.)?(?:(\d+)\.)?(\*|\d+)$/
+    - master
+    - /^(?:(\d+)\.)?(?:(\d+)\.)?(\*|\d+)$/
 
 ## Cache composer
 cache:
   directories:
-  - $HOME/.composer/cache
+    - $HOME/.composer/cache
 
 notifications:
   email:
@@ -18,34 +18,34 @@ notifications:
     on_failure: change
 
 php:
-- 7.2
-- nightly
+  - 7.2
+  - nightly
 
 env:
   global:
-  - COMPOSER_NO_INTERACTION=1
-  - PATH="$TRAVIS_BUILD_DIR/vendor/bin:$PATH"
+    - COMPOSER_NO_INTERACTION=1
+    - PATH="$TRAVIS_BUILD_DIR/vendor/bin:$PATH"
 
 matrix:
   allow_failures:
-  - php: nightly
+    - php: nightly
 fast_finish: true
 
 before_install:
-- composer validate
+  - composer validate
 
 install:
-- travis_retry composer install --no-progress --no-suggest
+  - travis_retry composer install --no-progress --no-suggest
 
 script:
-- composer test:coverage
+  - composer test:coverage
 
 after_success:
-- bash <(curl -s https://codecov.io/bash) -s "$TRAVIS_BUILD_DIR/tests/_output/"
+  - bash <(curl -s https://codecov.io/bash) -s "$TRAVIS_BUILD_DIR/tests/_output/"
 
 jobs:
   include:
-  - stage: sniff
-    php: 7.2
-    script: composer check-style
-    after_success: skip
+    - stage: sniff
+      php: 7.2
+      script: composer check-style
+      after_success: skip
