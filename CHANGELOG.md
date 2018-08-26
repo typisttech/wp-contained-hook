@@ -1,15 +1,27 @@
 # Change Log
 
+## [0.3.0](https://github.com/TypistTech/wp-contained-hook/tree/0.3.0) (2018-08-27)
+[Full Changelog](https://github.com/TypistTech/wp-contained-hook/compare/0.2.0...0.3.0)
+
+**Merged pull requests:**
+
+- Update readme [\#29](https://github.com/TypistTech/wp-contained-hook/pull/29) ([TangRufus](https://github.com/TangRufus))
+- Support older PHP 7.1 [\#28](https://github.com/TypistTech/wp-contained-hook/pull/28) ([TangRufus](https://github.com/TangRufus))
+- Accept all `psr/container-implementation` [\#27](https://github.com/TypistTech/wp-contained-hook/pull/27) ([TangRufus](https://github.com/TangRufus))
+- Test: Add `cacheDir` for `AspectMock` [\#26](https://github.com/TypistTech/wp-contained-hook/pull/26) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.2.0](https://github.com/TypistTech/wp-contained-hook/tree/0.2.0) (2018-02-02)
 [Full Changelog](https://github.com/TypistTech/wp-contained-hook/compare/0.1.1...0.2.0)
 
 **Closed issues:**
 
+- Composer: Suggest `typisttech/imposter-plugin` [\#20](https://github.com/TypistTech/wp-contained-hook/issues/20)
 - Readme: Remove actions and filters [\#16](https://github.com/TypistTech/wp-contained-hook/issues/16)
 - Update .styleci.yml to typist tech config [\#9](https://github.com/TypistTech/wp-contained-hook/issues/9)
 
 **Merged pull requests:**
 
+- Version bump 0.2.0 [\#25](https://github.com/TypistTech/wp-contained-hook/pull/25) ([TangRufus](https://github.com/TangRufus))
 - Add PHP 7.1 features [\#24](https://github.com/TypistTech/wp-contained-hook/pull/24) ([TangRufus](https://github.com/TangRufus))
 - Misc: Update info [\#23](https://github.com/TypistTech/wp-contained-hook/pull/23) ([TangRufus](https://github.com/TangRufus))
 - Update dependencies & bump minimum requirements [\#22](https://github.com/TypistTech/wp-contained-hook/pull/22) ([TangRufus](https://github.com/TangRufus))
