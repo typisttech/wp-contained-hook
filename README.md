@@ -10,8 +10,6 @@
 [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://typist.tech/donate/wp-contained-hook/)
 [![Hire Typist Tech](https://img.shields.io/badge/Hire-Typist%20Tech-ff69b4.svg)](https://typist.tech/contact/)
 
-Lazily instantiate objects from dependency injection container to WordPress hooks (actions and filters).
-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
@@ -20,13 +18,17 @@ Lazily instantiate objects from dependency injection container to WordPress hook
 - [Install](#install)
 - [Usage](#usage)
 - [API](#api)
-  - [Loader](#loader)
-    - [Loader::__construct(Container $container)](#loader__constructcontainer-container)
-    - [Loader::add(AbstractHook ...$hooks)](#loaderaddabstracthook-hooks)
+  - [TypistTech\WPContainedHook\Loader](#typisttech%5Cwpcontainedhook%5Cloader)
+    - [Loader Constructor](#loader-constructor)
+    - [Loader::add(HookInterface ...$hooks)](#loaderaddhookinterface-hooks)
     - [Loader::run()](#loaderrun)
-  - [Action and Filter](#action-and-filter)
+  - [Hooks: Action and Filter](#hooks-action-and-filter)
+    - [AbstractHook Constructor.](#abstracthook-constructor)
 - [Frequently Asked Questions](#frequently-asked-questions)
   - [Do you have an example plugin that use this package?](#do-you-have-an-example-plugin-that-use-this-package)
+  - [It looks awesome. Where can I find some more goodies like this?](#it-looks-awesome-where-can-i-find-some-more-goodies-like-this)
+  - [This plugin isn't on wp.org. Where can I give a :star::star::star::star::star: review?](#this-plugin-isnt-on-wporg-where-can-i-give-a-starstarstarstarstar-review)
+  - [This plugin isn't on wp.org. Where can I make a complaint?](#this-plugin-isnt-on-wporg-where-can-i-make-a-complaint)
 - [Support!](#support)
   - [Donate via PayPal *](#donate-via-paypal-)
   - [Why don't you hire me?](#why-dont-you-hire-me)
@@ -42,62 +44,85 @@ Lazily instantiate objects from dependency injection container to WordPress hook
 
 ## The Goals, or What This Package Does?
 
-Lazily instantiate objects from dependency injection container to WordPress hooks (actions and filters).
+Using [PSR-11 container implementation](https://www.php-fig.org/psr/psr-11/) in WordPress plugins, themes and packages during WordPress action/filter callbacks.
 
-Using dependency container in WordPress plugins or themes. Dependencies are lazy loaded, not instantiated until the first time they are used. 
+Dependencies are usually lazy loaded(depends on your container implementation), not instantiated until the first time they are used (during WordPress action/filter callbacks).
 
 ## Install
 
 Installation should be done via composer, details of how to install composer can be found at [https://getcomposer.org/](https://getcomposer.org/).
 
+You need a [`psr/container-implementation` package](https://packagist.org/providers/psr/container-implementation) as well. This readme uses `league/container` as an example (any `psr/container-implementation` works similarly).
+
 ``` bash
-$ composer require typisttech/wp-contained-hook
+# league/container is an example, any psr/container-implementation package works
+$ composer require typisttech/wp-contained-hook league/container
 ```
 
 ## Usage
 
 ```php
 use League\Container\Container;
-use League\Container\ReflectionContainer;
-use TypistTech\WPContainedHook\Action;
-use TypistTech\WPContainedHook\Filter;
+use TypistTech\WPContainedHook\Hooks\Action;
+use TypistTech\WPContainedHook\Hooks\Filter;
 use TypistTech\WPContainedHook\Loader;
 
 $container = new Container;
 
-// Optional container config. 
-$container->delegate(new ReflectionContainer); 
-$someClass = new SomeClass;
-$this->container->add(SomeClass::class, $someClass);
-
-$loader = new Loader($container);
+// Configure the container.
+// This depends on your `psr/container-implementation`.
+$container->add('bar', Bar::class);
+$container->add('foo', Foo::class);
 
 // Action.
-$action = new Action(SomeClass::class, 'plugin_loaded', 'doSomething');
+$action = new Action('bar', 'admin_init', 'doSomething');
 
 // Filter.
-$filter = new Filter(SomeClass::class, 'the_content', 'filterSomething');
+$filter = new Filter('foo', 'the_content', 'filterSomething');
 
-// Add to loader
+// Add to loader.
+$loader = new Loader($container);
 $loader->add($action, $filter);
 
-// Add to WordPress
+// Add to WordPress.
 $loader->run();
+```
+
+In plain WordPress, the above is similar to:
+
+```php
+$bar = new Bar();
+add_action('admin_init', [$bar, 'doSomething'])
+
+$foo = new Foo();
+add_filter('the_content', [$foo, 'filterSomething'])
+```
+
+In WordPress plus container, the above is similar to:
+
+```php
+add_action('admin_init', function ($arg) use ($container): void {
+  $bar = $container->get('bar');
+  $bar->doSomething($arg);
+})
+
+add_filter('the_content', function ($arg) use ($container) {
+  $foo = $container->get('foo');
+  return $foo->filterSomething($arg);
+})
 ```
 
 ## API
 
-### Loader
+### TypistTech\WPContainedHook\Loader
 
-Register all actions and filters for the plugin.
+Register all actions and filters for the plugin/package/theme.
 
-Maintain a list of all hooks that are registered throughout the plugin, and register them with the WordPress API. Call the `run` function to execute the list of actions and filters.
+Maintain a list of all hooks that are registered throughout the plugin, and register them with the WordPress API. Call the run function to execute the list of actions and filters.
 
-#### Loader::__construct(Container $container)
+#### Loader Constructor
 
-Loader constructor.
-
-* @param League\Container\Container\Container $container The container.
+* @param Psr\Container\ContainerInterface $container The container.
 
 Example:
 
@@ -106,11 +131,11 @@ $container = new Container;
 $loader = new Loader($container);
 ```
 
-#### Loader::add(AbstractHook ...$hooks)
+#### Loader::add(HookInterface ...$hooks)
 
 Add new hooks to the collection to be registered with WordPress.
 
-* @param AbstractHook|AbstractHook[] ...$hooks Hooks to be registered.
+* @param HookInterface|HookInterface[] ...$hooks Hooks to be registered.
 
 Example:
 
@@ -135,18 +160,13 @@ Example:
 $loader->run();
 ```
 
-### Action and Filter
+### Hooks: Action and Filter
 
 Holds necessary information for an action or a filter.
 
-Both `Action` and `Filter` are subclasses of `AbstractHook`.
+Both `Action` and `Filter` are subclasses of `AbstractHook` and implements `HookInterface`.
 
-AbstractHook constructor.
-
-```php
-Action::__construct(string $hook, string $classIdentifier, string $callbackMethod, int $priority = null, int $acceptedArgs = null)
-Filter::__construct(string $hook, string $classIdentifier, string $callbackMethod, int $priority = null, int $acceptedArgs = null)
-```
+#### AbstractHook Constructor.
 
 * @param string   $hook            The name of the WordPress hook that is being registered.
 * @param string   $classIdentifier Identifier of the entry to look for from container.
@@ -154,16 +174,46 @@ Filter::__construct(string $hook, string $classIdentifier, string $callbackMetho
 * @param int|null $priority        Optional.The priority at which the function should be fired. Default is 10.
 * @param int|null $acceptedArgs    Optional. The number of arguments that should be passed to the $callback. Default is 1.
 
+Example:
+
+```php
+$action = new Action('bar', 'admin_init', 'doSomething', 20, 2);
+
+$filter = new Filter('foo', 'the_content', 'filterSomething', 20, 2);
+```
+
 ## Frequently Asked Questions
 
 ### Do you have an example plugin that use this package?
 
-Here you go: 
+Here you go:
 
  * [Sunny](https://github.com/TypistTech/sunny)
  * [WP Cloudflare Guard](https://github.com/TypistTech/wp-cloudflare-guard)
+ * [Disallow Pwned Passwords](https://github.com/ItinerisLtd/disallow-pwned-passwords)
 
 *Add your own plugin [here](https://github.com/TypistTech/wp-contained-hook/edit/master/README.md)*
+
+### It looks awesome. Where can I find some more goodies like this?
+
+* Articles on Typist Tech's [blog](https://typist.tech)
+* [Tang Rufus' WordPress plugins](https://profiles.wordpress.org/tangrufus#content-plugins) on wp.org
+* More projects on [Typist Tech's GitHub profile](https://github.com/TypistTech)
+* Stay tuned on [Typist Tech's newsletter](https://typist.tech/go/newsletter)
+* Follow [Tang Rufus' Twitter account](https://twitter.com/TangRufus)
+* Hire [Tang Rufus](https://typist.tech/contact) to build your next awesome site
+
+### This plugin isn't on wp.org. Where can I give a :star::star::star::star::star: review?
+
+Thanks!
+
+Consider writing a blog post, submitting pull requests, [donating](https://typist.tech/donation/) or [hiring me](https://typist.tech/contact/) instead.
+
+### This plugin isn't on wp.org. Where can I make a complaint?
+
+To be honest, I don't care.
+
+If you really want to share your 1-star review, send me an email - in the first paragraph, state why didn't invest your time reading the [source code](./src) and making pull requests.
 
 ## Support!
 
