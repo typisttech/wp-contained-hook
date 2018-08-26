@@ -64,7 +64,7 @@
     },
     "scripts": {
         "check-style": "phpcs --standard=ruleset.xml --colors -p -s .",
-        "pre-tag": [
+        "pretag": [
             "composer update",
             "@test",
             "composer normalize",
