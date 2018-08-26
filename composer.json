@@ -1,13 +1,15 @@
 {
     "name": "typisttech/wp-contained-hook",
-    "description": "Lazily instantiate objects from dependency injection container to WordPress hooks (actions and filters)",
+    "description": "Using PSR-11 container implementation in WordPress plugins, themes and packages during WordPress action/filter callbacks.",
     "keywords": [
         "action",
         "container",
-        "dependency-injection",
+        "dependency",
         "di",
         "filter",
         "hook",
+        "injection",
+        "psr11",
         "wordpress",
         "wp"
     ],
