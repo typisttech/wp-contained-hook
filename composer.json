@@ -63,10 +63,11 @@
         }
     },
     "scripts": {
-        "check-style": "phpcs --standard=ruleset.xml --colors -p -s .",
+        "check-style": "phpcs --colors -p",
         "pretag": [
             "composer update",
             "@test",
+            "@check-style",
             "composer normalize",
             "doctoc README.md",
             "github_changelog_generator --no-verbose"

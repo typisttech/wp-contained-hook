@@ -1,17 +1,15 @@
 <?xml version="1.0"?>
-<ruleset name="PSR 2 plus WordPress Coding Standards">
-
-    <description>PSR 2 plus WordPress Coding Standards</description>
-
-    <config name="installed_paths" value="vendor/wp-coding-standards/wpcs,vendor/automattic/vipwpcs"/>
-    <config name="minimum_supported_wp_version" value="4.9"/>
-
+<ruleset name="PSR2PlusWordPress">
     <file>./</file>
     <exclude-pattern>/tests/*</exclude-pattern>
     <exclude-pattern>/vendor/*</exclude-pattern>
 
-    <rule ref="PSR2"/>
+    <arg value="s"/>
+    <config name="installed_paths" value="vendor/wp-coding-standards/wpcs,vendor/automattic/vipwpcs"/>
+    <config name="minimum_supported_wp_version" value="4.9"/>
 
+    <rule ref="PSR2"/>
+    <rule ref="WordPressVIPMinimum"/>
     <rule ref="WordPress">
         <exclude name="Generic.Classes.OpeningBraceSameLine.BraceOnNewLine"/>
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning"/>

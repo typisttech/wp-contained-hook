@@ -25,7 +25,7 @@ env:
 matrix:
   allow_failures:
     - php: nightly
-fast_finish: true
+  fast_finish: true
 
 before_install:
   - phpenv config-rm xdebug.ini || true
@@ -47,6 +47,3 @@ jobs:
       php: 7.1
     - stage: test
       php: nightly
-    - stage: sniff
-      php: 7.2
-      script: composer check-style

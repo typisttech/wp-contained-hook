@@ -1,0 +1,6 @@
+{
+    "require-dev": {
+        "automattic/vipwpcs": "dev-master",
+        "wp-coding-standards/wpcs": "^1.0"
+    }
+}
