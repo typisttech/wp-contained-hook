@@ -46,4 +46,6 @@ jobs:
     - stage: test
       php: 7.1
     - stage: test
+      php: 7.0
+    - stage: test
       php: nightly

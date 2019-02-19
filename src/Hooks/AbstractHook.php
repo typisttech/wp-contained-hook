@@ -48,24 +48,24 @@ abstract class AbstractHook implements HookInterface
     /**
      * Filter constructor.
      *
-     * @param string   $hook            The name of the WordPress hook that is being registered.
-     * @param string   $classIdentifier Identifier of the entry to look for from container.
-     * @param string   $callbackMethod  The callback method name.
-     * @param int|null $priority        Optional.The priority at which the function should be fired. Default is 10.
-     * @param int|null $acceptedArgs    Optional. The number of arguments that should be passed to the $callback.
-     *                                  Default is 1.
+     * @param string $hook            The name of the WordPress hook that is being registered.
+     * @param string $classIdentifier Identifier of the entry to look for from container.
+     * @param string $callbackMethod  The callback method name.
+     * @param int    $priority        Optional.The priority at which the function should be fired. Default is 10.
+     * @param int    $acceptedArgs    Optional. The number of arguments that should be passed to the $callback.
+     *                                Default is 1.
      */
     public function __construct(
         string $hook,
         string $classIdentifier,
         string $callbackMethod,
-        ?int $priority = null,
-        ?int $acceptedArgs = null
+        $priority = null,
+        $acceptedArgs = null
     ) {
         $this->hook = $hook;
         $this->classIdentifier = $classIdentifier;
         $this->callbackMethod = $callbackMethod;
-        $this->priority = $priority ?? 10;
-        $this->acceptedArgs = $acceptedArgs ?? 1;
+        $this->priority = (int) ($priority ?? 10);
+        $this->acceptedArgs = (int) ($acceptedArgs ?? 1);
     }
 }

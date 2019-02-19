@@ -9,7 +9,7 @@ class Filter extends AbstractHook
     /**
      * {@inheritdoc}
      */
-    public function register(): void
+    public function register()
     {
         add_filter(
             $this->hook,

@@ -101,7 +101,7 @@ add_filter('the_content', [$foo, 'filterSomething'])
 In WordPress plus container, the above is similar to:
 
 ```php
-add_action('admin_init', function ($arg) use ($container): void {
+add_action('admin_init', function ($arg) use ($container) {
   $bar = $container->get('bar');
   $bar->doSomething($arg);
 })
