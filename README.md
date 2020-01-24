@@ -28,7 +28,6 @@
   - [Do you have an example plugin that use this package?](#do-you-have-an-example-plugin-that-use-this-package)
   - [It looks awesome. Where can I find some more goodies like this?](#it-looks-awesome-where-can-i-find-some-more-goodies-like-this)
   - [This plugin isn't on wp.org. Where can I give a :star::star::star::star::star: review?](#this-plugin-isnt-on-wporg-where-can-i-give-a-starstarstarstarstar-review)
-  - [This plugin isn't on wp.org. Where can I make a complaint?](#this-plugin-isnt-on-wporg-where-can-i-make-a-complaint)
 - [Support!](#support)
   - [Donate via PayPal *](#donate-via-paypal-)
   - [Why don't you hire me?](#why-dont-you-hire-me)
@@ -208,12 +207,6 @@ Here you go:
 Thanks!
 
 Consider writing a blog post, submitting pull requests, [donating](https://typist.tech/donation/) or [hiring me](https://typist.tech/contact/) instead.
-
-### This plugin isn't on wp.org. Where can I make a complaint?
-
-To be honest, I don't care.
-
-If you really want to share your 1-star review, send me an email - in the first paragraph, state why didn't invest your time reading the [source code](./src) and making pull requests.
 
 ## Support!
 
