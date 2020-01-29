@@ -16,7 +16,7 @@ interface ContainerAwareInterface
      *
      * @return void
      */
-    public function setContainer(ContainerInterface $container): void;
+    public function setContainer(ContainerInterface $container);
 
     /**
      * Get the container.

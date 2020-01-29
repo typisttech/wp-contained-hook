@@ -42,7 +42,7 @@ class Loader implements ContainerAwareInterface
      *
      * @return void
      */
-    public function add(HookInterface ...$hooks): void
+    public function add(HookInterface ...$hooks)
     {
         $this->hooks = array_values(
             array_unique(
@@ -57,7 +57,7 @@ class Loader implements ContainerAwareInterface
      *
      * @return void
      */
-    public function run(): void
+    public function run()
     {
         foreach ($this->hooks as $hook) {
             $hook->setContainer($this->container);

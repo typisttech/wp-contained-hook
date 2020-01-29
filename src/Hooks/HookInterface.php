@@ -17,7 +17,7 @@ interface HookInterface extends ContainerAwareInterface
      *
      * @return void
      */
-    public function register(): void;
+    public function register();
 
     /**
      * The actual callback that WordPress going to fire.

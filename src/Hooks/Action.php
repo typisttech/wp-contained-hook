@@ -9,7 +9,7 @@ class Action extends AbstractHook
     /**
      * {@inheritdoc}
      */
-    public function register(): void
+    public function register()
     {
         add_action(
             $this->hook,
@@ -26,7 +26,7 @@ class Action extends AbstractHook
      *
      * @return void
      */
-    public function run(...$args): void
+    public function run(...$args)
     {
         $container = $this->getContainer();
         $instance = $container->get($this->classIdentifier);
