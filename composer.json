@@ -29,15 +29,15 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.2",
         "psr/container": "^1.0",
         "psr/container-implementation": "^1.0"
     },
     "require-dev": {
-        "10up/wp_mock": "^0.3.0",
-        "codeception/base": "^2.3",
+        "10up/wp_mock": "^0.4.2",
+        "codeception/base": "^3.1",
         "itinerisltd/itineris-wp-coding-standards": "^0.3.5",
-        "league/container": "^3.2",
+        "league/container": "^3.3",
         "roave/security-advisories": "dev-master"
     },
     "suggest": {
@@ -62,8 +62,6 @@
         }
     },
     "scripts": {
-        "style:check": "phpcs",
-        "style:fix": "phpcbf",
         "pretag": [
             "composer update",
             "@test",
@@ -72,6 +70,8 @@
             "doctoc README.md",
             "github_changelog_generator --no-verbose"
         ],
+        "style:check": "phpcs",
+        "style:fix": "phpcbf",
         "test": "codecept run",
         "test:coverage": "codecept run --coverage --coverage-html --coverage-xml"
     },

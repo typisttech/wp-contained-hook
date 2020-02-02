@@ -7,7 +7,6 @@ paths:
   envs: tests/_envs
 actor_suffix: Tester
 settings:
-  bootstrap: _bootstrap.php
   # randomize test order
   shuffle: true
 coverage:
