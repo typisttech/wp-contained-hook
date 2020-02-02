@@ -204,10 +204,10 @@ Don't use it on **end of life** or **security fixes only** PHP versions.
 Thanks! Glad you like it. It's important to let my know somebody is using this project. Since this is not hosted on wordpress.org, please consider:
 
 - tweet something good with mentioning [@TangRufus](https://twitter.com/tangrufus)
-- :star: star this [Github repo](https://github.com/ItinerisLtd/trellis_install_wp_cli_via_composer)
-- :eyes: [watch](https://github.com/ItinerisLtd/trellis_install_wp_cli_via_composer/subscription) this Github repo
+- :star: star this [Github repo](https://github.com/typisttech/wp-contained-hook)
+- :eyes: [watch](https://github.com/typisttech/wp-contained-hook/subscription) this Github repo
 - write blog posts
-- submit [pull requests](https://github.com/ItinerisLtd/trellis_install_wp_cli_via_composer)
+- submit [pull requests](https://github.com/typisttech/wp-contained-hook)
 - [sponsor](https://github.com/sponsors/TangRufus) Tang Rufus to maintain his open source projects
 - hire [Tang Rufus](https://typist.tech/contact) to build your next awesome site
 
