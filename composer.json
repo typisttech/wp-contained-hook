@@ -35,11 +35,10 @@
     },
     "require-dev": {
         "10up/wp_mock": "^0.3.0",
-        "automattic/vipwpcs": "dev-master",
         "codeception/base": "^2.3",
+        "itinerisltd/itineris-wp-coding-standards": "^0.3.5",
         "league/container": "^3.2",
-        "roave/security-advisories": "dev-master",
-        "wp-coding-standards/wpcs": "^1.0"
+        "roave/security-advisories": "dev-master"
     },
     "suggest": {
         "typisttech/imposter-plugin": "Wrap all composer vendor packages inside your own namespace, to prevent collisions when multiple plugins use this library"
@@ -63,11 +62,12 @@
         }
     },
     "scripts": {
-        "check-style": "phpcs --colors -p",
+        "style:check": "phpcs",
+        "style:fix": "phpcbf",
         "pretag": [
             "composer update",
             "@test",
-            "@check-style",
+            "@style:check",
             "composer normalize",
             "doctoc README.md",
             "github_changelog_generator --no-verbose"
