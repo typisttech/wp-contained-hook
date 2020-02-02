@@ -21,24 +21,6 @@ class LoaderTest extends Unit
      */
     protected $tester;
 
-    public function testAdd()
-    {
-        $container = Mockery::mock(ContainerInterface::class);
-
-        $loader = new Loader($container);
-
-        $action = Mockery::mock(Action::class);
-        $filter = Mockery::mock(Filter::class);
-
-        $loader->add($action);
-        $loader->add($action, $filter);
-
-        $this->assertAttributeSame([
-            $action,
-            $filter,
-        ], 'hooks', $loader);
-    }
-
     public function testRun()
     {
         $container = Mockery::mock(ContainerInterface::class);

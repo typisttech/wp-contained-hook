@@ -62,8 +62,6 @@
         }
     },
     "scripts": {
-        "style:check": "phpcs",
-        "style:fix": "phpcbf",
         "pretag": [
             "composer update",
             "@test",
@@ -72,6 +70,8 @@
             "doctoc README.md",
             "github_changelog_generator --no-verbose"
         ],
+        "style:check": "phpcs",
+        "style:fix": "phpcbf",
         "test": "codecept run",
         "test:coverage": "codecept run --coverage --coverage-html --coverage-xml"
     },

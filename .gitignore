@@ -5,6 +5,3 @@
 ### Composer ###
 /composer.lock
 /vendor/
-
-### PhpStorm ###
-/.idea/
