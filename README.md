@@ -2,10 +2,8 @@
 
 [![Latest Stable Version](https://poser.pugx.org/typisttech/wp-contained-hook/v/stable)](https://packagist.org/packages/typisttech/wp-contained-hook)
 [![Total Downloads](https://poser.pugx.org/typisttech/wp-contained-hook/downloads)](https://packagist.org/packages/typisttech/wp-contained-hook)
-[![Build Status](https://travis-ci.org/TypistTech/wp-contained-hook.svg?branch=master)](https://travis-ci.org/TypistTech/wp-contained-hook)
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/typisttech/wp-contained-hook.svg)](https://packagist.org/packages/typisttech/wp-contained-hook)
 [![codecov](https://codecov.io/gh/TypistTech/wp-contained-hook/branch/master/graph/badge.svg)](https://codecov.io/gh/TypistTech/wp-contained-hook)
-[![StyleCI](https://styleci.io/repos/86774587/shield?branch=master)](https://styleci.io/repos/86774587)
 [![License](https://poser.pugx.org/typisttech/wp-contained-hook/license)](https://packagist.org/packages/typisttech/wp-contained-hook)
 [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://typist.tech/donate/wp-contained-hook/)
 [![Hire Typist Tech](https://img.shields.io/badge/Hire-Typist%20Tech-ff69b4.svg)](https://typist.tech/contact/)
