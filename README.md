@@ -1,19 +1,22 @@
 # WP Contained Hook
 
-[![Latest Stable Version](https://poser.pugx.org/typisttech/wp-contained-hook/v/stable)](https://packagist.org/packages/typisttech/wp-contained-hook)
-[![Total Downloads](https://poser.pugx.org/typisttech/wp-contained-hook/downloads)](https://packagist.org/packages/typisttech/wp-contained-hook)
-[![PHP from Packagist](https://img.shields.io/packagist/php-v/typisttech/wp-contained-hook.svg)](https://packagist.org/packages/typisttech/wp-contained-hook)
+[![Packagist](https://img.shields.io/packagist/v/typisttech/wp-contained-hook.svg?style=flat-square)](https://packagist.org/packages/typisttech/wp-contained-hook)
+[![Packagist](https://img.shields.io/packagist/dt/typisttech/wp-contained-hook.svg?style=flat-square)](https://packagist.org/packages/typisttech/wp-contained-hook)
+![PHP from Packagist](https://img.shields.io/packagist/php-v/TypistTech/wp-contained-hook?style=flat-square)
+[![CircleCI](https://circleci.com/gh/TypistTech/wp-contained-hook.svg?style=svg)](https://circleci.com/gh/TypistTech/wp-contained-hook)
 [![codecov](https://codecov.io/gh/TypistTech/wp-contained-hook/branch/master/graph/badge.svg)](https://codecov.io/gh/TypistTech/wp-contained-hook)
-[![License](https://poser.pugx.org/typisttech/wp-contained-hook/license)](https://packagist.org/packages/typisttech/wp-contained-hook)
-[![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://typist.tech/donate/wp-contained-hook/)
-[![Hire Typist Tech](https://img.shields.io/badge/Hire-Typist%20Tech-ff69b4.svg)](https://typist.tech/contact/)
+[![GitHub](https://img.shields.io/github/license/TypistTech/wp-contained-hook.svg?style=flat-square)](https://github.com/TypistTech/wp-contained-hook/blob/master/LICENSE.md)
+[![GitHub Sponsor](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?style=flat-square)](https://github.com/sponsors/TangRufus)
+[![Sponsor via PayPal](https://img.shields.io/badge/Sponsor-PayPal-blue.svg?style=flat-square)](https://typist.tech/donate/wp-contained-hook/)
+[![Hire Typist Tech](https://img.shields.io/badge/Hire-Typist%20Tech-ff69b4.svg?style=flat-square)](https://typist.tech/contact/)
+[![Twitter Follow @TangRufus](https://img.shields.io/twitter/follow/TangRufus?style=flat-square&color=1da1f2)](https://twitter.com/tangrufus)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [The Goals, or What This Package Does?](#the-goals-or-what-this-package-does)
-- [Install](#install)
+- [Goals](#goals)
+- [Installation](#installation)
 - [Usage](#usage)
 - [API](#api)
   - [TypistTech\WPContainedHook\Loader](#typisttech%5Cwpcontainedhook%5Cloader)
@@ -22,12 +25,12 @@
     - [Loader::run()](#loaderrun)
   - [Hooks: Action and Filter](#hooks-action-and-filter)
     - [AbstractHook Constructor.](#abstracthook-constructor)
-- [Frequently Asked Questions](#frequently-asked-questions)
-  - [Do you have an example plugin that use this package?](#do-you-have-an-example-plugin-that-use-this-package)
+- [FAQs](#faqs)
+  - [Will you add support for older PHP versions?](#will-you-add-support-for-older-php-versions)
   - [It looks awesome. Where can I find some more goodies like this?](#it-looks-awesome-where-can-i-find-some-more-goodies-like-this)
-  - [This plugin isn't on wp.org. Where can I give a :star::star::star::star::star: review?](#this-plugin-isnt-on-wporg-where-can-i-give-a-starstarstarstarstar-review)
-- [Support!](#support)
-  - [Donate via PayPal *](#donate-via-paypal-)
+  - [Where can I give :star::star::star::star::star: reviews?](#where-can-i-give-starstarstarstarstar-reviews)
+- [Sponsoring :heart:](#sponsoring-heart)
+  - [GitHub Sponsors Matching Fund](#github-sponsors-matching-fund)
   - [Why don't you hire me?](#why-dont-you-hire-me)
   - [Want to help in other way? Want to be a sponsor?](#want-to-help-in-other-way-want-to-be-a-sponsor)
 - [Running the Tests](#running-the-tests)
@@ -39,13 +42,13 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## The Goals, or What This Package Does?
+## Goals
 
 Using [PSR-11 container implementation](https://www.php-fig.org/psr/psr-11/) in WordPress plugins, themes and packages during WordPress action/filter callbacks.
 
 Dependencies are usually lazy loaded(depends on your container implementation), not instantiated until the first time they are used (during WordPress action/filter callbacks).
 
-## Install
+## Installation
 
 Installation should be done via composer, details of how to install composer can be found at [https://getcomposer.org/](https://getcomposer.org/).
 
@@ -179,38 +182,44 @@ $action = new Action('bar', 'admin_init', 'doSomething', 20, 2);
 $filter = new Filter('foo', 'the_content', 'filterSomething', 20, 2);
 ```
 
-## Frequently Asked Questions
+## FAQs
 
-### Do you have an example plugin that use this package?
+### Will you add support for older PHP versions?
 
-Here you go:
+Never! This plugin will only work on [actively supported PHP versions](https://secure.php.net/supported-versions.php).
 
- * [Sunny](https://github.com/TypistTech/sunny)
- * [WP Cloudflare Guard](https://github.com/TypistTech/wp-cloudflare-guard)
- * [Disallow Pwned Passwords](https://github.com/ItinerisLtd/disallow-pwned-passwords)
-
-*Add your own plugin [here](https://github.com/TypistTech/wp-contained-hook/edit/master/README.md)*
+Don't use it on **end of life** or **security fixes only** PHP versions.
 
 ### It looks awesome. Where can I find some more goodies like this?
 
-* Articles on Typist Tech's [blog](https://typist.tech)
-* [Tang Rufus' WordPress plugins](https://profiles.wordpress.org/tangrufus#content-plugins) on wp.org
-* More projects on [Typist Tech's GitHub profile](https://github.com/TypistTech)
-* Stay tuned on [Typist Tech's newsletter](https://typist.tech/go/newsletter)
-* Follow [Tang Rufus' Twitter account](https://twitter.com/TangRufus)
-* Hire [Tang Rufus](https://typist.tech/contact) to build your next awesome site
+- Articles on Typist Tech's [blog](https://typist.tech)
+- More projects on [Typist Tech's GitHub profile](https://github.com/TypisTTech/)
+- More plugins on [TangRufus'](https://profiles.wordpress.org/tangrufus/#content-plugins) wp.org profiles
+- Stay tuned on [Typist Tech's newsletter](https://typist.tech/go/newsletter)
+- Follow [@TangRufus](https://twitter.com/tangrufus) on Twitter
+- Hire [Tang Rufus](https://typist.tech/contact) to build your next awesome site
 
-### This plugin isn't on wp.org. Where can I give a :star::star::star::star::star: review?
+### Where can I give :star::star::star::star::star: reviews?
 
-Thanks!
+Thanks! Glad you like it. It's important to let my know somebody is using this project. Since this is not hosted on wordpress.org, please consider:
 
-Consider writing a blog post, submitting pull requests, [donating](https://typist.tech/donation/) or [hiring me](https://typist.tech/contact/) instead.
+- tweet something good with mentioning [@TangRufus](https://twitter.com/tangrufus)
+- :star: star this [Github repo](https://github.com/ItinerisLtd/trellis_install_wp_cli_via_composer)
+- :eyes: [watch](https://github.com/ItinerisLtd/trellis_install_wp_cli_via_composer/subscription) this Github repo
+- write blog posts
+- submit [pull requests](https://github.com/ItinerisLtd/trellis_install_wp_cli_via_composer)
+- [sponsor](https://github.com/sponsors/TangRufus) Tang Rufus to maintain his open source projects
+- hire [Tang Rufus](https://typist.tech/contact) to build your next awesome site
 
-## Support!
+## Sponsoring :heart:
 
-### Donate via PayPal [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://typist.tech/donate/wp-conatined-hook/)
+Love `WP Contained Hook`? Help me maintain it, a [sponsorship here](https://typist.tech/donation/) can help with it.
 
-Love WP Contained Hook? Help me maintain WP Contained Hook, a [donation here](https://typist.tech/donate/wp-conatined-hook/) can help with it.
+### GitHub Sponsors Matching Fund
+
+Do you know [GitHub is going to match your sponsorship](https://help.github.com/en/github/supporting-the-open-source-community-with-github-sponsors/about-github-sponsors#about-the-github-sponsors-matching-fund)?
+
+[Sponsor now via GitHub](https://github.com/sponsors/TangRufus) to double your greatness.
 
 ### Why don't you hire me?
 
@@ -237,11 +246,11 @@ Please submit an [issue](https://github.com/TypistTech/wp-contained-hook/issues/
 
 ## Change log
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+Please see [CHANGELOG](./CHANGELOG.md) for more information on what has changed recently.
 
 ## Security
 
-If you discover any security related issues, please email wp-contained-hook@typist.tech instead of using the issue tracker.
+If you discover any security related issues, please email [wp-contained-hook@typist.tech](mailto:wp-contained-hook@typist.tech) instead of using the issue tracker.
 
 ## Credits
 
@@ -251,4 +260,4 @@ Full list of contributors can be found [here](https://github.com/TypistTech/wp-c
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE) for more information.
+The MIT License (MIT). Please see [License File](./LICENSE) for more information.
