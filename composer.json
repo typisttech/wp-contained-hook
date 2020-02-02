@@ -67,7 +67,7 @@
             "@test",
             "@style:check",
             "composer normalize",
-            "doctoc README.md",
+            "npx doctoc README.md",
             "github_changelog_generator --no-verbose"
         ],
         "style:check": "phpcs",
