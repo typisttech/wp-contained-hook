@@ -6,10 +6,10 @@
 [![CircleCI](https://circleci.com/gh/TypistTech/wp-contained-hook.svg?style=svg)](https://circleci.com/gh/TypistTech/wp-contained-hook)
 [![codecov](https://codecov.io/gh/TypistTech/wp-contained-hook/branch/master/graph/badge.svg)](https://codecov.io/gh/TypistTech/wp-contained-hook)
 [![GitHub](https://img.shields.io/github/license/TypistTech/wp-contained-hook.svg?style=flat-square)](https://github.com/TypistTech/wp-contained-hook/blob/master/LICENSE.md)
-[![GitHub Sponsor](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?style=flat-square)](https://github.com/sponsors/TangRufus)
-[![Sponsor via PayPal](https://img.shields.io/badge/Sponsor-PayPal-blue.svg?style=flat-square)](https://typist.tech/donate/wp-contained-hook/)
+[![GitHub Sponsor](https://img.shields.io/badge/Sponsor-GitHub-ea4aaa?style=flat-square&logo=github)](https://github.com/sponsors/TangRufus)
+[![Sponsor via PayPal](https://img.shields.io/badge/Sponsor-PayPal-blue.svg?style=flat-square&logo=paypal)](https://typist.tech/donate/wp-contained-hook/)
 [![Hire Typist Tech](https://img.shields.io/badge/Hire-Typist%20Tech-ff69b4.svg?style=flat-square)](https://typist.tech/contact/)
-[![Twitter Follow @TangRufus](https://img.shields.io/twitter/follow/TangRufus?style=flat-square&color=1da1f2)](https://twitter.com/tangrufus)
+[![Twitter Follow @TangRufus](https://img.shields.io/twitter/follow/TangRufus?style=flat-square&color=1da1f2&logo=twitter)](https://twitter.com/tangrufus)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -204,10 +204,10 @@ Don't use it on **end of life** or **security fixes only** PHP versions.
 Thanks! Glad you like it. It's important to let my know somebody is using this project. Since this is not hosted on wordpress.org, please consider:
 
 - tweet something good with mentioning [@TangRufus](https://twitter.com/tangrufus)
-- :star: star this [Github repo](https://github.com/ItinerisLtd/trellis_install_wp_cli_via_composer)
-- :eyes: [watch](https://github.com/ItinerisLtd/trellis_install_wp_cli_via_composer/subscription) this Github repo
+- :star: star this [Github repo](https://github.com/typisttech/wp-contained-hook)
+- :eyes: [watch](https://github.com/typisttech/wp-contained-hook/subscription) this Github repo
 - write blog posts
-- submit [pull requests](https://github.com/ItinerisLtd/trellis_install_wp_cli_via_composer)
+- submit [pull requests](https://github.com/typisttech/wp-contained-hook)
 - [sponsor](https://github.com/sponsors/TangRufus) Tang Rufus to maintain his open source projects
 - hire [Tang Rufus](https://typist.tech/contact) to build your next awesome site
 
