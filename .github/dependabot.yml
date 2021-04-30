@@ -4,5 +4,3 @@ updates:
   directory: "/"
   schedule:
     interval: daily
-    time: "17:30"
-    timezone: Europe/London
